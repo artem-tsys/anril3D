@@ -1,0 +1,44 @@
+@media screen and (min-width: 1023px) {
+  .s3d {
+    &-card {
+      &:hover {
+        cursor: pointer;
+        .s3d-card__link {
+          background-size: 200% 100%;
+        }
+      }
+      &__close {
+        &:hover {
+          &:after, &:before {
+            background: $color1;
+          }
+          &:after {
+            transform: translate(-50%,-50%)rotate(135deg);
+          }
+          &:before {
+            transform: translate(-50%,-50%)rotate(-135deg);
+          }
+        }
+      }
+
+      &__add-favourites {
+        &:hover{
+          svg{
+            fill: $color1;
+            stroke: transparent;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .s3d {
+    &-card {
+      &__image {
+        height: 110px;
+      }
+    }
+  }
+}

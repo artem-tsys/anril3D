@@ -1,0 +1,61 @@
+$default-font: "Montserrat",
+  sans-serif;
+$default-font2: "Montserrat",
+  sans-serif;
+$mc: #b6b3b0;
+$mc3: #293044;
+$wc: #ffffff;
+$bc: #000000;
+//$bc2: #000000;
+$color1: #E1345D;
+$color2: #505050;
+$colorTextM: #1A191D;
+$colorTextS: #1A191D;
+
+$padding-wrap: 40px;
+$padding-wrap--small: 20px;
+
+$--bg : #71A461;
+
+$name-project: 'anril';
+
+:root{
+
+  --s3d-title: 36px;
+  --s3d-font-size-s: 10px;
+  --s3d-font-size-m: 14px;
+  --s3d-font-size-table: 14px;
+  --s3d-header-height: 60px;
+  --s3d-header-margin: 30px;
+  --s3d-content-margin-top: 0;
+  --s3d-margin-top: calc(var(--s3d-header-margin) + var(--s3d-header-height) + var(--s3d-content-margin-top));
+}
+
+@media screen and (max-width:1440px){
+  :root{
+    --s3d-title: 30px;
+    --s3d-font-size-m: 12px;
+    --s3d-font-size-table: 12px;
+  }
+}
+
+
+@media screen and (max-width:992px){
+  :root{
+    --s3d-font-size-m: 14px;
+  }
+}
+@media screen and (max-width:600px){
+  :root{
+    --s3d-title: 24px;
+    --s3d-font-size-m: 12px;
+    --s3d-font-size-table: 10px;
+    --s3d-header-margin: 20px;
+  }
+}
+
+@media screen and (max-width:680px){
+  :root{
+    --s3d-header-height: 40px;
+  }
+}

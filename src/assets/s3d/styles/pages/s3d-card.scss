@@ -1,0 +1,224 @@
+.s3d {
+  &-card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    padding: 50px 45px 45px;
+    transition: box-shadow .5s ease-out;
+    z-index: 999;
+    &__icon{
+      display: flex;
+      width: 52px;
+      height: 52px;
+      flex: 0 0 52px;
+      justify-content: center;
+      align-items: center;
+
+      background: $color1;
+      svg {
+        width: 18px;
+        height: 16px;
+        fill: #FFFFFF;
+      }
+    }
+    &__close{
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      height: 36px;
+      width: 36px;
+      cursor: pointer;
+      z-index: 5;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.5s ease-in-out;
+      &:after{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        content: "";
+        width: 60%;
+        height: 2px;
+        background-color: $color2;
+        transform: translate(-50%,-50%)rotate(45deg);
+        transition: background-color 0.4s ease-in-out, transform 0.4s ease-in-out;
+      }
+      &:before{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        content: "";
+        width: 60%;
+        height: 2px;
+        background-color: $color2;
+        transform: translate(-50%,-50%)rotate(-45deg);
+        transition: background-color 0.4s ease-in-out, transform 0.4s ease-in-out;
+      }
+    }
+    &__image {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      height: 170px;
+      max-width: 80%;
+      margin: 0 auto 24px;
+      z-index: 2;
+      transition: opacity 0.6s cubic-bezier(.41,.57,.26,1);
+      img{
+        display: inline-block;
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+      }
+      span{
+        margin-left: 7px;
+      }
+    }
+    &__title {
+      display: flex;
+      span {
+        font-family: $default-font;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 1.3em;
+        color: #1A191D;
+        &:last-child {
+          margin-left: 1ch;
+        }
+      }
+    }
+    &__type {
+      height: 25px;
+      width: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include s3d-text-s($wc);
+      text-align: center;
+      z-index: 5;
+      &[data-s3d-value^="1"] {
+        background-color: #E1345D;
+      }
+      &[data-s3d-value^="2"] {
+        background-color: #EF1D8E;
+      }
+      &[data-s3d-value^="3"] {
+        background-color: #A600E7;
+      }
+      &[data-s3d-value^="4"] {
+        background-color: #832FF0;
+      }
+    }
+    &__top {
+      padding: 0 0 10px;
+      border-bottom: 1px solid #DED2D4;
+    }
+    &__price {
+      padding: 20px 0 0;
+      font-family: $default-font;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 1.3em;
+      color: $color2;
+      span {
+        &:last-child {
+          margin-left: 1ch;
+        }
+      }
+    }
+    &__data {
+      width: 100%;
+      font-family: $default-font;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 1.4em;
+      color: $color2;
+      padding: 20px 0;
+      border-bottom: 1px solid #DED2D4;
+      .s3d-card__row {
+        margin-bottom: 10px;
+        &:last-child {
+          margin: 0;
+        }
+      }
+      span {
+        &:last-child {
+          margin-left: 1ch;
+        }
+      }
+    }
+    &__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+    &__buttons{
+      position: relative;
+      display: flex;
+      overflow: hidden;
+      padding: 0;
+      z-index: 7;
+      order: 3;
+      transition: all 0.4s ease-in;
+    }
+    &__link{
+      position: relative;
+      flex: 1 1 auto;
+      height: 40px;
+      margin: 30px 0 0 0;
+      padding: 0;
+      border: none;
+      font-family: $default-font;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 18px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #FFFFFF;
+      background: linear-gradient(264.58deg, #9D69F7 3.41%, #B560E2 19.3%, #C753CE 35.2%, #D25BA8 46.86%, #E17699 60.64%, #F0B19B 88.72%, #F9DB71 101.97%);
+      background-size: 100% 100%;
+      cursor: pointer;
+      overflow: hidden;
+      transition: background-size 0.6s ease-in-out;
+      pointer-events: painted;
+      z-index: 1;
+      span {
+        flex: 0 0 auto;
+      }
+    }
+    &__add-favourites{
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      display: flex;
+      align-content: center;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      width: 30px;
+      border: none;
+      cursor: pointer;
+      z-index: 3;
+      transition: all 0.5s ease-in-out;
+      input{
+        display: none;
+      }
+      input:checked + svg{
+        fill: $color1;
+        stroke: transparent;
+      }
+      svg {
+        height: 50%;
+        width: 50%;
+        fill: transparent;
+        stroke: $bc;
+        stroke-width: 1px;
+        pointer-events: none;
+        transition: stroke .3s ease-out, fill .3s ease-out;
+      }
+    }
+  }
+}
