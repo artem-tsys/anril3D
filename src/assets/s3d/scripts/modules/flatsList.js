@@ -69,7 +69,6 @@ class FlatsList {
         return;
       }
       const config = this.checkNextFlyby({ type: 'flyby', method: 'search' }, id);
-      // console.log(config);
       if (config === null) {
         return;
       }
@@ -135,7 +134,6 @@ class FlatsList {
     tr.dataset.id = flat.id;
     tr.classList = 's3d-filter__tr js-s3d-filter__tr';
     tr.innerHTML = `
-					<div class="s3d-filter__td">${flat.type || '-'}</div>
 					<div class="s3d-filter__td">${flat.rooms}</div>
 					<div class="s3d-filter__td">${flat.floor}</div>
 					<div class="s3d-filter__td">${flat.area} m<sup>2</sup></div>

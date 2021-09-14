@@ -4,8 +4,8 @@
       &__label {
         &:hover:not(.active-flat) {
           input:not(:checked) + svg {
-            fill: $color2;
-            stroke: $color2;
+            fill: $color1;
+            stroke: transparent;
           }
         }
         &.active-flat {
@@ -17,51 +17,44 @@
           }
         }
       }
-      &__tr {
+    }
+    &__hide {
         &:hover {
-          background: #E1DDD2;
-        }
-      }
-      &__hide {
-        &:hover {
-          color: $color2;
-        }
-      }
-      &__button {
-        &--apply {
-          &:hover {
-            color: #ffffff;
-            opacity: 0.9;
+          color: $color1;
+          &:after {
+            border-bottom-color: $color1;
           }
         }
-        &--reset {
-          &:hover {
-            color: $wc;
-            .s3d-filter__button--reset-icon {
-              svg{
-                fill: $wc;
-              }
+      }
+    &__button {
+      &--apply {
+        &:hover {
+          color: #ffffff;
+          opacity: 0.9;
+        }
+      }
+      &--reset {
+        &:hover {
+          color: $color1;
+          .s3d-filter__button--reset-icon {
+            svg {
+              fill: $color1;
             }
           }
         }
       }
-      &__mini-info {
-        &:hover {
-          color: $color2;
-        }
+    }
+    &__mini-info {
+      &:hover {
+        color: $color2;
+      }
+    }
+    &__tr {
+      &:hover {
+        background: rgba(255, 52, 93, 0.7);
       }
     }
   }
-  //.active-filter .s3d-filter {
-  //  &__close-wrap {
-  //    &:hover {
-  //      transform: translate(100%, 0);
-  //      .s3d-filter__close {
-  //        transform: rotate(90deg);
-  //      }
-  //    }
-  //  }
-  //}
 }
 
 //@media screen and (max-width: 1023px) {

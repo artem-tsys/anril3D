@@ -178,7 +178,7 @@ class AppModel extends EventEmitter {
           conf['method'] = 'general';
           break;
     }
-    console.log('getParam  id', id);
+
     if (!_.isUndefined(id)) {
       conf['id'] = id;
     } else {

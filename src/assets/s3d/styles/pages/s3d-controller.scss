@@ -84,8 +84,8 @@
       }
 
       &:disabled {
-        color: #1A191D;
-        background: rgba(255, 255, 255, 0.6);
+        color: $color2;
+        background: rgba(224, 210, 213, 0.8);
         cursor: no-drop;
       }
     }
@@ -183,7 +183,8 @@
       align-items: center;
       justify-self: end;
       justify-content: flex-end;
-      @include s3d-text-m();
+      margin: auto 0;
+      @include s3d-text-m($color2);
       cursor: pointer;
       transition: color 0.3s ease-in;
       pointer-events: painted;
@@ -196,7 +197,7 @@
         max-height: 75vw;
         width: 200vh;
         max-width: 75vw;
-        background: radial-gradient(50% 50% at 50% 50%, #000000 0%, rgba(0, 0, 0, 0) 100%);
+        background: radial-gradient(50% 50% at 50% 50%, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
         transform: translate(50%, -50%);
         visibility: hidden;
         opacity: 0;
@@ -221,15 +222,15 @@
           content: "";
           display: inline-block;
           height: 10px;
-          width: 1px;
-          margin: 0 10px;
+          width: 2px;
+          margin: 0 20px;
           background: $color2;
         }
       }
       svg{
-        height: 16px;
-        width: 18px;
-        fill: $color2;
+        height: 13px;
+        width: 15px;
+        fill: $color1;
         transition: transform 0.4s ease-in-out;
       }
     }

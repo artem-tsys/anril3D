@@ -21,13 +21,13 @@ $name-project: 'anril';
 
 :root{
 
-  --s3d-title: 36px;
+  --s3d-title: 40px;
   --s3d-font-size-s: 10px;
   --s3d-font-size-m: 14px;
   --s3d-font-size-table: 14px;
   --s3d-header-height: 60px;
   --s3d-header-margin: 30px;
-  --s3d-content-margin-top: 0;
+  --s3d-content-margin-top: 0px;
   --s3d-margin-top: calc(var(--s3d-header-margin) + var(--s3d-header-height) + var(--s3d-content-margin-top));
 }
 

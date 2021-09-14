@@ -11,27 +11,27 @@
       }
       &__select {
         &:hover:not( .active ):not( [ disabled ] ) {
-          background: rgba(255,255,255,1);
-          color: $color1;
+          color: #FFFFFF;
+          background: $color1;
         }
       }
-      &__toHome {
-        &:hover {
-          svg {
-            fill: $color1;
-          }
-        }
-      }
-      &__back {
-        &:hover{
-          path {
-            transform: translateX(0);
-          }
-        }
-      }
+      //&__toHome {
+      //  &:hover {
+      //    svg {
+      //      fill: $color1;
+      //    }
+      //  }
+      //}
+      //&__back {
+      //  &:hover{
+      //    path {
+      //      transform: translateX(0);
+      //    }
+      //  }
+      //}
       &__favourites {
         &:hover{
-          color: $color2;
+          color: $color1;
           svg {
             transform: scale(1.2);
           }

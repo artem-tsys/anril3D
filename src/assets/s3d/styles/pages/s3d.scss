@@ -167,10 +167,37 @@
   &-title {
     font-family: $default-font;
     font-size: var(--s3d-title);
-    font-weight: 400;
-    color: $wc;
-    line-height: 1em;
-    letter-spacing: -0.05em;
+    font-weight: 600;
+    color: $bc;
+    line-height: 1.15em;
+  }
+
+  &-breadcrumbs {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    &__link {
+      font-family: $default-font;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 14px;
+      color: #959595;
+      text-decoration: none;
+    }
+    &__current {
+      font-family: $default-font;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 14px;
+      color: #505050;
+      margin: 0;
+      &:before {
+        content: "|";
+        display: inline-block;
+        color: #959595;
+        margin: 0 20px;
+      }
+    }
   }
 }
 

@@ -159,7 +159,7 @@ class InfoBox {
     if (_.isUndefined(e)) {
       return;
     }
-    const keys = ['floor', 'number', 'type'];
+    const keys = ['floor', 'rooms', 'type'];
     keys.map(key => {
       this.infoBox.find(`[data-s3d-update=${key}]`)[0].textContent = `${e[key] || ''}`;
       return key;
@@ -170,7 +170,7 @@ class InfoBox {
       const el = element;
       el.dataset.id = e.id;
     });
-    this.infoBox.find('[data-s3d-update="type"]')[0].dataset['s3dValue'] = `${e.type || ''}`;
+    this.infoBox.find('[data-s3d-update_val="rooms"]')[0].dataset['s3dValue'] = `${e.type || ''}`;
     this.infoBox.find('[data-s3d-update="area"]')[0].textContent = `${e.area || ''}`;
     this.infoBox.find('[data-s3d-update="price"]')[0].textContent = `${e.price || ''}`;
     this.infoBox.find('[data-s3d-update="image"]')[0].src = e['img_small'] ? e['img_small'] : `${defaultProjectPath}/s3d/images/examples/no-image.png`;

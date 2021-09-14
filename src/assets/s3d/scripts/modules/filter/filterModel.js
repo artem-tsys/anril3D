@@ -39,6 +39,7 @@ class FilterModel extends EventEmitter {
     this.updateCurrentFilterFlatsId(flats);
 
     this.emit('showSelectElements', flats);
+    this.emit('updateHeightFilter');
   }
 
   createFilterParam(flats) {

@@ -3,6 +3,7 @@
     &__button {
       &:focus{
         outline-style: outset;
+        outline-width: 1px;
         //outline-color: rgba(132, 41, 144, 0.3);
       }
       &:hover {

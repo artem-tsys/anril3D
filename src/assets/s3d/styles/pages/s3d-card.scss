@@ -5,6 +5,8 @@
     flex-direction: column;
     flex: 1 1 auto;
     padding: 50px 45px 45px;
+    background: $wc;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: box-shadow .5s ease-out;
     z-index: 999;
     &__icon{
