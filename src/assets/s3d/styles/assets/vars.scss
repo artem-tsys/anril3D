@@ -31,11 +31,13 @@ $name-project: 'anril';
   --s3d-margin-top: calc(var(--s3d-header-margin) + var(--s3d-header-height) + var(--s3d-content-margin-top));
 }
 
-@media screen and (max-width:1440px){
+@media screen and (max-width:1360px){
   :root{
     --s3d-title: 30px;
     --s3d-font-size-m: 12px;
     --s3d-font-size-table: 12px;
+    --s3d-header-height: 50px;
+    --s3d-header-margin: 20px;
   }
 }
 

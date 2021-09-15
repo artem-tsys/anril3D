@@ -3,9 +3,10 @@
     &-ctr {
       &__open {
         &-filter {
-
           &:hover{
-
+            .s3d-ctr__open-filter__text {
+              color: $color1;
+            }
           }
         }
       }
@@ -41,34 +42,25 @@
   }
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1360px) {
   .s3d {
-    &-ctr{
+    &-ctr {
       grid-gap: 20px;
-      grid-template-columns: 160px 200px 46px 1fr 1fr 1fr;
-      grid-template-rows: var(--s3d-header-height) 2px auto auto 1fr auto auto;
+      grid-template-columns: 345px 30px 1fr auto;
       &__compass {
-        height: 63px;
-        width: 63px;
-      }
-      &__elem {
-        width: 160px;
-      }
-      &__select {
-        padding: 8px 20px;
+        height: 100px;
+        width: 100px;
       }
       &__open {
         &-filter {
-          height: 50px;
+          height: 60px;
           &__icon {
-            width: 50px;
+            width: 60px;
           }
           &__text {
-            padding: 0 32px 0 25px;
+            padding: 0 30px;
           }
         }
-      }
-      &__favourites {
       }
     }
   }

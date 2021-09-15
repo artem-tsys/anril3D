@@ -23,25 +23,32 @@
     width: 100%;
     max-height: 100vh;
     display: grid;
-    padding: 0;
-    grid-template-columns: 220px 220px 65px 1fr 1fr minmax(220px, 0.8fr) minmax(220px, 0.8fr);
-    grid-template-rows: var(--s3d-margin-top) auto auto auto 1fr auto auto auto 40px;
+    padding: 40px 50px;
+    margin-top: 30px;
+    grid-template-columns: 1.4fr 0.2fr 2.2fr 0.2fr 1fr;
+    grid-template-rows: auto 1fr;
     grid-template-areas:
-    'info info . .       .       .     .'
-    'info info . title   title   .     .'
-    'info info . links   links   favourite favourite'
-    'info info . type    type    plane plane'
-    'info info . img     img     plane plane'
-    'info info . img     img     plane plane'
-    'info info . view    view    plane plane'
-    'info info . button  button  plane plane'
-    'info info . .       .       .     .';
+    'info verticalLine links  . plane'
+    'info verticalLine middle    . plane';
 
-    background: linear-gradient(180deg, #152222 0%, #017275 100%);
-
+    background: $wc;
+    &__wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      height: 100%;
+      width: 100%;
+      max-height: 100vh;
+      background: #EFE9EA;
+      padding: var(--s3d-margin-top) 40px 60px;
+    }
     &__title {
-      grid-area: title;
-      @extend .s3d-title;
+      font-family: $default-font;
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 32px;
+      color: $colorTextM;
     }
     &__left {
       grid-area: info;
@@ -50,19 +57,15 @@
       justify-content: flex-start;
       align-content: flex-start;
       align-items: flex-start;
-      height: 100%;
+      height: calc(100% - 250px - 36px);
       width: 100%;
-      padding: calc(var(--s3d-margin-top) + 34px) 0 39px 0;
-      background: url("/wp-content/themes/#{$name-project}/assets/s3d/images/flat-bg.jpg") center /cover;
-      //background: url("/wp-content/themes/template/assets/s3d/images/flat-bg.jpg") center /cover;
+      padding: 0 50px 0 0;
       &-buttons {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         align-content: center;
-        width: calc(100% - 190px);
-        margin: auto 0 0 190px;
       }
     }
     &__right {
@@ -72,15 +75,55 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
-      padding: 0 50px;
-      border-left: 1px solid rgba(207, 190, 151, 0.2);
+      padding: 0;
       grid-area: plane;
+      &-top {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: $default-font;
+        font-weight: 800;
+        font-size: 30px;
+        line-height: 32px;
+        text-transform: uppercase;
+        color: #1A191D;
+        padding: 0 0 25px;
+      }
+    }
+    &__line {
+      position: relative;
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: inline-block;
+        width: 100%;
+        border-bottom: 1px solid #DED2D4;
+      }
+      &-vertical {
+        grid-area: verticalLine;
+        position: relative;
+        &:after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: inline-block;
+          height: 100%;
+          border-left: 1px solid #DED2D4;
+        }
+      }
+    }
+    &__type {
+      color: #EF1D8E;
     }
     &__image {
       display: inline-block;
-      height: calc(100% - 60px);
+      height: 100%;
       max-width: 80%;
-      margin: 30px auto;
+      margin: 30px auto 50px;
       grid-area: img;
       img{
         display: inline-block;
@@ -91,20 +134,52 @@
         cursor: pointer;
       }
     }
-    &__mini-info {
-      display: flex;
-      align-items: flex-start;
-      justify-content: flex-start;
-      //justify-content: space-between;
-      padding: 25px 70px 25px 0;
-      flex: 0 1 auto;
+    &__middle {
+      grid-area: middle;
     }
     &__card {
       display: flex;
       width: 100%;
-      max-height: calc(100% - 260px);
+      max-height: 100%;
       flex-direction: column;
-      padding: 0 50px;
+      padding: 0;
+      &-top {
+        padding: 25px 0;
+        font-family: $default-font;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 26px;
+        color: #505050;
+        .s3d-flat__card-row {
+          margin-bottom: 10px;
+          &:last-child {
+            margin: 0;
+          }
+        }
+      }
+      &-bottom {
+        padding: 25px 0;
+        font-family: $default-font;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 26px;
+        color: #505050;
+        .s3d-flat__card-row {
+          margin-bottom: 10px;
+          &:last-child {
+            margin: 0;
+          }
+        }
+      }
+      &-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      &-area {
+        font-weight: 600;
+      }
     }
     &__table {
       width: 100%;
@@ -135,31 +210,15 @@
       }
     }
     &__el {
-      height: calc(1em + 20px);
-      @include s3d-text-table($wc);
-      &:nth-child(1) {
-        font-weight: 600;
-        margin: 0;
-      }
-      &:nth-child(2) {
-        font-weight: 600;
-      }
-      &:nth-child(3) {
-        height: calc(1em + 30px);
-      }
-      &__name {
-        padding: 0 10px 0 0;
-      }
+      @include s3d-text-table();
       &__value {
-        position: relative;
-        padding: 0;
-      }
-      &__num {
-        margin-right: 17px;
+        text-align: right;
       }
     }
     &__compass {
-      order: 1;
+      position: absolute;
+      top: 0;
+      right: 0;
       display: flex;
       width: 90px;
       height: 90px;
@@ -173,11 +232,11 @@
     &__links {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       flex-wrap: wrap;
       grid-area: links;
-      margin: 14px 0 0 0;
     }
-    &__callback-wrap {
+    &__buttons {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -188,26 +247,24 @@
       display: flex;
       align-items: center;
       align-content: center;
+      height: 50px;
+      width: 100%;
+      margin-bottom: 10px;
       order: 2;
-      @include s3d-text-m();
+      font-family: $default-font;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 18px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #1A191D;
       transition: color 0.3s ease-in;
       text-decoration: none;
-      &-text {
-        display: flex;
-        flex-direction: column;
-      }
-      span {
-        font-weight: 600;
-      }
       &-icon {
-        display: flex;
-        align-items: center;
-        align-content: center;
-        justify-content: center;
-        height: 60px;
-        width: 60px;
-        background: $color1;
-        margin: 0 20px 0 0;
+        height: 10px;
+        width: 12px;
+        background: $wc;
+        margin: 0 0 0 20px;
       }
       svg {
         height: 40%;
@@ -217,17 +274,43 @@
     &__callback {
       position: relative;
       display: flex;
+      justify-content: center;
       align-items: center;
-      max-width: 280px;
-      margin: 5px 13px;
+      height: 50px;
+      width: 100%;
       padding: 0;
-      border: none;
-      background: none;
+      margin-bottom: 10px;
       font-family: $default-font;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 18px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      text-align: center;
+      border: none;
+      background: linear-gradient(264.58deg, #9D69F7 3.41%, #B560E2 19.3%, #C753CE 35.2%, #D25BA8 46.86%, #E17699 60.64%, #F0B19B 88.72%, #F9DB71 101.97%);
+      background-size: 100% 100%;
       cursor: pointer;
-      transition: color 0.4s ease-in;
+      transition: background-size 0.6s ease-in-out;
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        display: inline-block;
+        width: 100%;
+        border-bottom: 1px solid #DED2D4;
+      }
+      //&:last-child {
+      //  margin: 0;
+      //  &:after {
+      //    display: none;
+      //  }
+      //}
     }
     &__floor {
+      position: relative;
       display: flex;
       height: 100%;
       width: 100%;
@@ -251,27 +334,30 @@
       display: flex;
       align-items: center;
       align-content: center;
-      flex-grow: 1;
-      @include s3d-text-m();
+      font-family: $default-font;
+      font-weight: 400;
+      color: $colorTextM;
+      line-height: 2em;
+      font-size: 15px;
       cursor: pointer;
       transition: color .3s ease-out;
       &__text {
-        margin: 0 0 0 15px;
+        margin: 0 15px 0 0;
       }
       input{
         display: none;
       }
       input:checked + svg{
-        fill: $color2;
+        fill: $color1;
         stroke: transparent;
       }
 
       svg {
-        height: 16px;
-        width: 16px;
+        height: 15px;
+        width: 15px;
         fill: transparent;
         stroke: $color2;
-        stroke-width: 2px;
+        stroke-width: 1px;
         pointer-events: none;
         transition: stroke .3s ease-out, fill .3s ease-out;
       }
@@ -281,17 +367,20 @@
       align-items: center;
       align-content: center;
       padding: 0;
-      flex-grow: 3;
-      @include s3d-text-m();
+      font-family: $default-font;
+      font-weight: 400;
+      color: $colorTextM;
+      line-height: 2em;
+      font-size: 15px;
       background: transparent;
       border: none;
       transition: color .3s ease-out;
       cursor: pointer;
       svg {
-        margin-right: 10px;
+        margin-right: 20px;
       }
     }
-    &__buttons{
+    &__buttons-type{
       grid-area: type;
       display: flex;
       justify-content: center;
@@ -410,34 +499,21 @@
       }
     }
     &__data {
-      &-title {
-        font-family: $default-font;
-        font-weight: 400;
-        font-size: 24px;
-        line-height: 1em;
-        letter-spacing: -0.05em;
-        color: #FFFFFF;
-        text-align: center;
-      }
-      &-flat {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 50px;
+      border-top: 1px solid rgba(207, 190, 151, 0.2);
+      border-bottom: 1px solid rgba(207, 190, 151, 0.2);
+      @include s3d-text-m($color2, 1.3, 500);
+      > div {
         display: flex;
-        justify-content: center;
-        @include s3d-text-m();
-        padding: 20px 0;
-        margin: 20px auto 0;
-        border-top: 1px solid rgba(207, 190, 151, 0.2);
-        border-bottom: 1px solid rgba(207, 190, 151, 0.2);
-        > div {
-          display: flex;
-          align-items: center;
-          margin: 0 7px;
-          span {
-            margin-left: 5px;
-          }
+        align-items: center;
+        margin: 0 7px;
+        span {
+          margin-left: 5px;
         }
-      }
-      &-numFloor {
-        margin: 0 0 0 5px;
       }
     }
     &__favourites {
@@ -485,62 +561,6 @@
       pointer-events: none;
       background: linear-gradient(180deg, #182F2F 58.33%, rgba(24, 47, 47, 0) 100%);
     }
-  }
-  &-mini-info{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex: 0 1 auto;
-    height: 60px;
-    padding: 0 30px;
-    border-left: 1px solid rgba(207, 190, 151, 0.2);
-    grid-area: mini;
-    &:nth-child(1) {
-      padding: 0 30px 0 0;
-      border: none;
-    }
-    &__title{
-      font-family: $default-font;
-      font-weight: 400;
-      font-size: 12px;
-      line-height: 1em;
-      text-transform: capitalize;
-      color: #E1DDD2;
-    }
-    &__amount{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 7px 0 0 0;
-      font-family: $default-font;
-      font-weight: 500;
-      font-size: 36px;
-      line-height: 1em;
-      color: $wc;
-    }
-  }
-}
-
-.s3d-fon-monreal {
-  &__top {
-    position: relative;
-    border: 2px solid $color2;
-    border-left: none;
-  }
-
-  &__middle {
-    display: inline-block;
-    height: 10px;
-    width: 100%;
-    flex: 0 0 10px;
-    border-left: 2px solid $color2;
-  }
-
-  &__bottom {
-    width: 100%;
-    border: 2px solid $color2;
-    border-left: none;
   }
 }
 
