@@ -198,7 +198,6 @@ class AppModel extends EventEmitter {
     const flat = this.getFlat(id);
     const hasConfigPage = Object.keys(this.config).includes(searchParams['type']);
     if (!_.has(searchParams, 'type') || !hasConfigPage) return this.getParamDefault(searchParams, flat);
-
     switch (searchParams['type']) {
         case 'flyby':
           return this.getParamFlyby(searchParams, flat);
@@ -206,6 +205,8 @@ class AppModel extends EventEmitter {
           return this.getParamPlannings(searchParams);
         case 'floor':
           return this.getParamFloor(searchParams, flat.floor);
+        case 'flat':
+          return this.getParam(searchParams, id);
         default:
           return this.getParamDefault(searchParams, flat);
           // return this.getParam(searchParams, id);
