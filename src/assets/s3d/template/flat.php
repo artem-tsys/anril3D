@@ -139,13 +139,18 @@ echo json_encode('<div class="s3d-flat__wrap">
             </div>
           </div>
           <div class="s3d-flat__buttons">
-            <a href="#" class="s3d-flat__pdf js-s3d__create-pdf">
-             <div class="s3d-flat__pdf-icon">
-                <svg role="presentation"><use xlink:href="#icon-pdf"></use></svg>
-             </div>
+            <a href="#" class="s3d-flat__transparent-button s3d-flat__pdf js-s3d__create-pdf">
               <div class="s3d-flat__pdf-text">
                 завантажити
                 <span>pdf</span>
+             </div>
+             <div class=" s3d-flat__pdf-icon">
+                <svg role="presentation"><use xlink:href="#icon-pdf"></use></svg>
+             </div>
+            </a>
+            <a href="#" class="s3d-flat__transparent-button js-s3d__create-booking">
+              <div class="s3d-flat__pdf-text">
+                Забронювати
              </div>
             </a>
               <button class="s3d-flat__callback s3d-flat__callback-2 js-callback-form" data-parrent-node-popup>

@@ -60,9 +60,18 @@
           }
         }
       }
+      &__transparent-button {
+        &:hover {
+          color: $color1;
+          
+        }
+      }
       &__pdf {
         &:hover {
-          color: $color2;
+          color: $color1;
+        }
+        &:hover &-icon svg{
+          fill: $color1;
         }
       }
     }
@@ -383,5 +392,14 @@
         grid-column: 1 /span 2;
       }
     }
+  }
+}
+
+
+
+@media screen and (min-width: 1680px) {
+  &-top {
+    font-size: 40px;
+    line-height: 36px;
   }
 }
