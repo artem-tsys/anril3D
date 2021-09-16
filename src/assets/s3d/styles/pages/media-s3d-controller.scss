@@ -75,6 +75,13 @@
     &-ctr{
       grid-gap: 20px;
       grid-template-columns: 160px 160px 15px 1fr 1fr 1fr;
+      grid-template-areas:
+        '. . . . . .'
+        'filter . . . . favourite'
+        '. . . . . .'
+        '. . . . . .'
+        'buttons . . . . .'
+        'buttons . . . . compass';
     }
     &__compass {
       margin: 0 auto 0 30px;

@@ -47,8 +47,8 @@ echo json_encode('<div class="s3d-flat__wrap">
             </svg>
           </div>
           <div class="s3d-flat__data">
-              <div>№<span data-type="number">2А</span></div>
-              <div><span data-type="flat">2</span>k</div>
+              <div>№<span data-type="type">2А</span></div>
+              <div><span data-var="flat" data-type="flat">2</span>k</div>
               <div>площа:<span data-type="area">134</span><span>м<sup>2</sup></span></div>
           </div>
         </div>
