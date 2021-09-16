@@ -84,11 +84,12 @@
         align-items: center;
         font-family: $default-font;
         font-weight: 800;
-        font-size: 30px;
-        line-height: 32px;
+        font-size: 40px;
+        line-height: 36px;
         text-transform: uppercase;
         color: #1A191D;
         padding: 0 0 25px;
+        
       }
     }
     &__line {
@@ -143,6 +144,7 @@
       max-height: 100%;
       flex-direction: column;
       padding: 0;
+      margin-bottom: auto;
       &-top {
         padding: 25px 0;
         font-family: $default-font;
@@ -168,6 +170,11 @@
           margin-bottom: 10px;
           &:last-child {
             margin: 0;
+          }
+          sup {
+            transform: translateY(0%);
+            margin-top: -0.7em;
+            display: inline-block;
           }
         }
       }
@@ -244,6 +251,7 @@
       grid-area: button;
     }
     &__pdf {
+      position: relative;
       display: flex;
       align-items: center;
       align-content: center;
@@ -260,16 +268,45 @@
       color: #1A191D;
       transition: color 0.3s ease-in;
       text-decoration: none;
+      justify-content: center;
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        display: inline-block;
+        width: 100%;
+        border-bottom: 1px solid #DED2D4;
+      }
       &-icon {
-        height: 10px;
-        width: 12px;
+        height: 12px;
+        width: 11px;
         background: $wc;
         margin: 0 0 0 20px;
       }
       svg {
-        height: 40%;
-        width: 40%;
+        height: 100%;
+        width: 100%;
       }
+    }
+    &__transparent-button {
+      display: flex;
+      align-items: center;
+      align-content: center;
+      height: 50px;
+      width: 100%;
+      margin-bottom: 10px;
+      order: 2;
+      font-family: $default-font;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 18px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #1A191D;
+      transition: color 0.3s ease-in;
+      text-decoration: none;
+      justify-content: center;
     }
     &__callback {
       position: relative;
@@ -292,7 +329,8 @@
       background: linear-gradient(264.58deg, #9D69F7 3.41%, #B560E2 19.3%, #C753CE 35.2%, #D25BA8 46.86%, #E17699 60.64%, #F0B19B 88.72%, #F9DB71 101.97%);
       background-size: 100% 100%;
       cursor: pointer;
-      transition: background-size 0.6s ease-in-out;
+      transition: background-size 0.6s ease-in-out, color .3s ease-in-out;
+      color: #FFFFFF;
       &:after {
         content: '';
         position: absolute;
