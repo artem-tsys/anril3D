@@ -70,21 +70,30 @@ echo json_encode('<div class="s3d-flat__wrap">
           <div class="s3d-flat__image">
             <img class="js-s3d-flat__image" src="assets/s3d/images/examples/KV.png" data-mfp-src="assets/s3d/images/examples/KV.png">
           </div>
-          <div class="s3d-flat__buttons-type  js-s3d-flat__buttons-type"></div>
-		  <div class="s3d-flat__buttons-view js-s3d-flat__buttons-view">
-		  <label data-type="2d" class="s3d-flat__radio js-s3d__radio-view" >
-		    <input type="radio" name="view" value="2d">
-		    <span>план схема</span>
-          </label>
+          <div class="s3d-flat__bottom-buttons-wrap">
+            <div class="js-s3d-flat__buttons-type s3d-flat__buttons-type"></div>
+            <button type="button" class="s3d-flat__window-view-call-popup"> 
+              <span>Вид з вікна</span>
+              <img class="s3d-flat__window-view-call-popup-icon" src="assets/s3d/images/360-degrees.png">
+            </button>
+          </div>
           
-		  <label class="s3d-flat__select js-s3d__radio-view-change">
-		    <input type="checkbox">
-		    <span class="s3d-flat__select-button"></span>
-          </label>
+          
+		  <div class="s3d-flat__buttons-view js-s3d-flat__buttons-view">
+      
+        <label data-type="2d" class="s3d-flat__radio js-s3d__radio-view" >
+          <input type="radio" name="view" value="2d">
+          <span>план схема</span>
+            </label>
+            
+        <label class="s3d-flat__select js-s3d__radio-view-change">
+          <input type="checkbox">
+          <span class="s3d-flat__select-button"></span>
+        </label>
           
           <label data-type="3d" class="s3d-flat__radio js-s3d__radio-view">
-		    <input type="radio" name="view" value="3d">
-		    <span>3D планування</span>
+            <input type="radio" name="view" value="3d">
+            <span>3D планування</span>
           </label>
         </div>
         </div>

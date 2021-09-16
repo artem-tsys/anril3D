@@ -41,16 +41,20 @@
       &__button {
         &-input {
           &:checked:hover~span{
-            background: #F4F4F2;
-            color: #786F79;
+            // background: #F4F4F2;
+            // color: #786F79;
           }
         }
         &:hover{
           span{
             background: $color1;
-            color: $color2;
+            color: $wc;
           }
         }
+      }
+      &__window-view-call-popup:hover {
+        color: $color1;
+
       }
       &__favourites {
         &:hover{
