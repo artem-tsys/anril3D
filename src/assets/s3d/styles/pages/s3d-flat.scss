@@ -218,6 +218,7 @@
       }
     }
     &__el {
+      
       @include s3d-text-table();
       &__value {
         text-align: right;
@@ -319,7 +320,7 @@
       padding: 0;
       margin-bottom: 10px;
       font-family: $default-font;
-      font-weight: 600;
+      font-weight: 500;
       font-size: 12px;
       line-height: 18px;
       letter-spacing: 0.15em;
@@ -504,7 +505,7 @@
         padding: 7px 15px;
         background: transparent;
         font-family: $default-font;
-        font-weight: 500;
+        font-weight: 300;
         font-size: 14px;
         line-height: 26px;
         color: #1A191D;

@@ -129,6 +129,10 @@ echo json_encode('<div class="s3d-flat__wrap">
                       <td class="s3d-flat__el__name">Ванна</td>
                       <td class="s3d-flat__el__value">4 м<sup>2</sup></td>
                     </tr>
+                    <tr class="s3d-flat__el">
+                      <td class="s3d-flat__el__name">Ванна</td>
+                      <td class="s3d-flat__el__value">4 м<sup>2</sup></td>
+                    </tr>
                   </tbody>
                 </table>
             </div>

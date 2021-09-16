@@ -83,11 +83,19 @@
 }
 
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1680px) {
   .s3d {
     &-flat {
       grid-template-columns: 180px 220px 65px 1fr 1fr minmax(150px, 11%) minmax(150px, 11%);
+      grid-template-columns: 1.4fr 0.2fr 2fr 0.2fr 1.2fr;
+      padding: 30px 40px;
+      &__title {
+        font-size: 18px;
+        line-height: 26px;
+      }
       &__data {
+        font-size: 10px;
+        line-height: 14px;
         &-title {
           font-size: 20px;
         }
@@ -96,16 +104,23 @@
         padding: 15px 0;
       }
       &__list {
-        padding: 17px 30px 17px 0;
+        padding: 17px 20px 17px 0;
       }
       &__el {
         padding: 8px 0;
+        @include s3d-text-table(null, 1.7em);
       }
       &__card {
         max-height: calc(100% - 180px);
+        margin-bottom: 0;
       }
-      &__callback {
-        margin: 15px 10px 0;
+      &__card-bottom {
+        padding: 15px 0 20px 0;
+        font-size: 12px;
+        line-height: 20px;
+        .s3d-flat__card-row {
+          margin-bottom: 2px;
+        }
       }
       &__compass {
         height: 64px;
@@ -116,41 +131,97 @@
         width: calc(100% - 160px);
         margin: auto 0 0 160px;
       }
-      //&__pdf {
-        //margin: 0 0 0 180px;
-      //}
-    }
-  }
-}
-
-@media screen and (max-width: 1280px) {
-  .s3d {
-    &-flat {
-      grid-template-columns: 180px 180px 35px 1fr 1fr minmax(150px, 11%) minmax(150px, 11%);
-      &__callback-wrap {
-        flex-wrap: wrap;
-      }
-      &__links {
-        flex-wrap: wrap;
-      }
       &__show-3d {
-        margin: 0 0 0 20px;
+        font-size: 10px;
+        line-height: 14px;
+        svg {
+          margin-right: 15px;
+          width: 16px;
+          height: 9px;
+        }
       }
-      &__card {
-        flex: 1 1 auto;
-        overflow: auto;
+      &__like {
+        font-size: 10px;
+        line-height: 14px;
+        svg {
+          height: 13.345184326171875px;
+          width: 14.999971389770508px;
+        }
       }
-      &__compass {
-        //margin: auto 0 20px 180px;
-        margin: 0 0 30px 0;
+      &__image {
+        margin-top: 23px;
+        margin-bottom: 27px;
+        max-width: 100%;
+        img {
+          object-position: top;
+        }
       }
-      //&__left-buttons {
-        //width: calc(100% - 200px);
-      //}
+      &__button span {
+        font-size: 10px;
+        line-height: 14px;
+        padding: 7px 10px;
+      }
+      &__right-top {
+        font-weight: 800;
+        font-size: 30px;
+        line-height: 32px;
+        padding-bottom: 15px;
+      }
+      &__window-view-call-popup {
+        font-size: 10px;
+        line-height: 14px;
+      }
+      &__card-top {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 20px;
+        padding: 15px 0;
+        .s3d-flat__card-row {
+          margin-bottom: 2px;
+        }
+      }
+      &__callback {
+        height: 40px;
+        font-size: 12px;
+        line-height: 18px;
+      }
+      &__transparent-button {
+        height: 40px;
+        font-size: 12px;
+        line-height: 18px;
+      }
     }
-
   }
 }
+
+// @media screen and (max-width: 1280px) {
+//   .s3d {
+//     &-flat {
+//       grid-template-columns: 180px 180px 35px 1fr 1fr minmax(150px, 11%) minmax(150px, 11%);
+//       &__callback-wrap {
+//         flex-wrap: wrap;
+//       }
+//       &__links {
+//         flex-wrap: wrap;
+//       }
+//       &__show-3d {
+//         margin: 0 0 0 20px;
+//       }
+//       &__card {
+//         flex: 1 1 auto;
+//         overflow: auto;
+//       }
+//       &__compass {
+//         //margin: auto 0 20px 180px;
+//         margin: 0 0 30px 0;
+//       }
+//       //&__left-buttons {
+//         //width: calc(100% - 200px);
+//       //}
+//     }
+
+//   }
+// }
 
 @media screen and (max-width: 1080px) {
   .s3d {
@@ -161,7 +232,7 @@
         margin: 20px 0 0;
       }
       &__show-3d {
-        margin: 0 0 0 auto;
+        margin: 0 0 0 0;
         padding: 0;
       }
     }
