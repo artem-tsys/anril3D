@@ -32,6 +32,9 @@ class FlatController {
     view.on('clickPdfHandler', event => {
       this._model.getPdfLink(event.currentTarget.dataset.id);
     });
+    view.on('openForm', event => {
+      this._model.openForm();
+    });
   }
 }
 

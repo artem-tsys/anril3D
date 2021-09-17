@@ -19,6 +19,7 @@ class FlatView extends EventEmitter {
     model.wrapper.on('click', '.js-callback-form', e => {
       e.preventDefault();
       $('.js-phone-order-popup').addClass('active');
+      this.emit('openForm');
     });
 
     model.wrapper.on('click', '.close-btn', e => {

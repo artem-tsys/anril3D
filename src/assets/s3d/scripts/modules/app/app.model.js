@@ -18,7 +18,7 @@ import PopupChangeFlyby from '../popupChangeFlyby';
 import FavouritesModel from '../favourites/favouritesModel';
 import FavouritesController from '../favourites/favouritesController';
 import FavouritesView from '../favourites/favouritesView';
-
+import CallbackFormController from '../callbackForm/callbackFormController';
 class AppModel extends EventEmitter {
   constructor(data) {
     super();
@@ -47,6 +47,7 @@ class AppModel extends EventEmitter {
     this.hoverFlatId$ = new BehaviorSubject(null);
     this.flatList = {};
     this.subject = new BehaviorSubject(this.flatList);
+    this.callbackForm = new CallbackFormController();
     this.fsmConfig = fsmConfig();
     this.fsm = fsm();
   }
@@ -465,6 +466,7 @@ class AppModel extends EventEmitter {
     config.history = this.history;
     config.infoBox = this.infoBox;
     config.$typeSelectedFlyby = this.$typeSelectedFlyby;
+    config.callbackForm = this.callbackForm;
     this.fsm.dispatch(settings, nameMethod, this, config);
   }
 

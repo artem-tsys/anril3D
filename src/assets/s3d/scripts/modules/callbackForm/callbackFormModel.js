@@ -1,8 +1,20 @@
 import EventEmitter from '../eventEmitter/EventEmitter';
 
 export default class CallbackFormModel extends EventEmitter {
-  constructor(data) {
+  constructor() {
     super();
-    // this.view = new data;
+  }
+
+  closeHandler() {
+    this.emit('closeForm');
+  }
+
+  firstRender() {
+    this.emit('firstRender');
+    console.log('firstFormRender');
+  }
+
+  openHandler() {
+    this.emit('openForm');
   }
 }

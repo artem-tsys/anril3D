@@ -22,6 +22,7 @@ class FlatModel extends EventEmitter {
     this.getFlat = config.getFlat;
     this.updateFsm = config.updateFsm;
     this.history = config.history;
+    this.callbackForm = config.callbackForm;
     this.createWrap();
     this.wrapper = $(`.js-s3d__wrapper__${this.type}`);
     this.imagesType = '';
@@ -128,6 +129,9 @@ class FlatModel extends EventEmitter {
     // }
 
     $('.s3d-flat__like input').prop('checked', favourite.includes(+this.activeFlat));
+  }
+  openForm() {
+    this.callbackForm.view.emit('openForm');
   }
 
   checkPlaning() {

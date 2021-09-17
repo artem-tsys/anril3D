@@ -11,6 +11,7 @@
     flex-direction: column;
     font-family: $default-font;
     color: #505050;
+    visibility: hidden;
     &__title {
         margin-bottom: 30px;
         font-size: 18px;
