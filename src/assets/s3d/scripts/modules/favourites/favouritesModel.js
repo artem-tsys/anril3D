@@ -263,6 +263,8 @@ class FavouritesModel extends EventEmitter {
     if (gsap === undefined) return;
     const curElem = element;
     const animatingElParams = curElem.getBoundingClientRect();
+    console.log(animatingElParams);
+    console.log(curElem, ' CURRENT ELEM');
     curElem.style.cssText += `
 			width:${animatingElParams.width}px;
 			height:${animatingElParams.height}px;
