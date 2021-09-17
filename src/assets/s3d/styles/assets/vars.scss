@@ -31,7 +31,7 @@ $name-project: 'anril';
   --s3d-margin-top: calc(var(--s3d-header-margin) + var(--s3d-header-height) + var(--s3d-content-margin-top));
 }
 
-@media screen and (max-width:1360px){
+@media screen and (max-width:1680px){
   :root{
     --s3d-title: 30px;
     --s3d-font-size-m: 12px;

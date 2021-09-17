@@ -23,7 +23,10 @@
   }
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1680px) {
+  .s3d-breadcrumbs {
+    padding-top: 14px;
+  }
   .s3d__slideModule{
     .s3d__button-second {
       max-width: 236px;

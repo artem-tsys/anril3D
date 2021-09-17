@@ -5,8 +5,10 @@
       width: 205px;
     }
     &-card {
+      padding: 35px 25px 30px 25px;
       &__image {
         margin-bottom: 17px;
+        height: 100px;
       }
       &__data {
         padding: 15px 0;
@@ -41,6 +43,10 @@
       }
       &__top {
         padding: 0px 0 6px;
+      }
+      &__add-favourites {
+        height: 20px;
+    width: 20px;
       }
     }
   }
