@@ -17,6 +17,7 @@
         line-height: 28px;
         color: #000000;
         font-weight: 600;
+        padding-right: 25%;
     }
     &__input-group {
         display: flex;
@@ -136,5 +137,13 @@
     }
     &__checkbox:checked ~ &__checkbox-input {
         display: block;
+    }
+    &__close {
+        position: absolute;
+        right: 30px;
+        top: 30px;
+        width: 15px;
+        height: 15px;
+        cursor: pointer;
     }
 }
