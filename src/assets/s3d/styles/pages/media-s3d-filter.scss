@@ -329,6 +329,9 @@
         // max-height: calc(100vh - var(--s3d-margin-top) - 250px);
         // padding-bottom: 20px;
       }
+      &-select__list {
+        margin-top: 20px;
+      }
       &__option {
         &__list {
           column-gap: 0;
@@ -352,27 +355,35 @@
 @media screen and (max-width: 600px) {
   .s3d {
     &-filter {
+      padding: 0 0px;
       &-wrap {
         width: 100%;
+        bottom: 0;
+        height: calc(100% - var(--s3d-margin-top));
       }
       &__title {
         line-height: 1em;
+        padding-left: 0;
       }
       &__top {
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-left: 10px;
+        padding-right: 10px;
         padding-bottom: 35px;
         .s3d__favourites {
           margin: 0 0 0 10px;
         }
+      }
+      &__table {
+        padding-left: 10px;
+        padding-right: 10px;
       }
       &__head {
         padding: 0 10px;
       }
       &__button{
         &--reset {
-          height: 40px;
-          width: 40px;
+          height: auto;
+          width: auto;
         }
         &--apply {
           width: 40px;
@@ -387,16 +398,22 @@
           }
         }
       }
-
+      &__option__list {
+        column-gap: 0;
+      }
+      &-select__list {
+        margin-top: 15px;
+      }
       &__rooms--label {
-        height: 40px;
+        height: 25px;
         width: 40px;
         margin: 0 2px;
       }
       &__close {
         &-wrap {
-          top: calc(var(--s3d-header-height) + 20px + 12px);
-          right: 10px;
+          // top: calc(var(--s3d-header-height) + 20px + 12px);
+          top: 15px;
+          right: 15px;
           height: 30px;
           width: 30px;
           padding: 5px;
@@ -404,6 +421,10 @@
           background: none;
           z-index: 12;
         }
+      }
+      &__amount-flat {
+        padding: 0 0 0 10px;
+        height: 40px;
       }
     }
   }

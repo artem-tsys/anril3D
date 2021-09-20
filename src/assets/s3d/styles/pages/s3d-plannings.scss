@@ -106,10 +106,12 @@
       &:before{
         content: "";
         display: inline-block;
+        vertical-align: middle;
         height: 10px;
         width: 2px;
         margin: 0 20px;
         background: $color2;
+        background: #000000;
       }
     }
     svg {

@@ -37,9 +37,7 @@
       grid-column: 3 / 7;
     }
     &-filter {
-      &-select__list {
-        margin-top: 20px;
-      }
+      
     }
     &__button-left {
       left: 30px;
@@ -58,6 +56,12 @@
       svg {
         width: 14px;
         height: 12px;
+      }
+      &-left {
+        left: 0;
+      }
+      &-right {
+        right: 0;
       }
     }
     &-infoBox {

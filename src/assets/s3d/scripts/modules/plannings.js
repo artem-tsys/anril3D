@@ -63,10 +63,36 @@ class Plannings {
       this.history.update({ type: 'flat', method: 'general', id });
       this.updateFsm({ type: 'flat', method: 'general' }, id);
     });
+    if (this.matchMobile()) {
+      this.wrapperNode.parentElement.addEventListener('scroll', event => {
+        paginationScroll(event.target, this.showFlatList, this.currentShowAmount, this.createListCard.bind(this));
+      });
+    } else {
+      this.wrapperNode.addEventListener('scroll', event => {
+        paginationScroll(event.target, this.showFlatList, this.currentShowAmount, this.createListCard.bind(this));
+      });
+    }
+    // if (this.init())
+    console.log(this.wrapperNode);
+    this.triggerFakeFilterOpenButton();
+  }
 
-    this.wrapperNode.addEventListener('scroll', event => {
-      paginationScroll(event.target, this.showFlatList, this.currentShowAmount, this.createListCard.bind(this));
+  /**
+   * @description - Обработчик для фальшивой кнопки открытия фильтра
+   * на мобильной версии
+   */
+  triggerFakeFilterOpenButton() {
+    const realFilterCall = document
+      .querySelector('.js-s3d-ctr__open-filter');
+    const fakeFilterCall = document
+      .querySelector('.js-s3d-pl__filter-call-mobile');
+    fakeFilterCall.addEventListener('click', () => {
+      realFilterCall.dispatchEvent(new Event('click'));
     });
+  }
+
+  matchMobile() {
+    return window.matchMedia('(max-width: 600px)').matches;
   }
 
   visibleAvailableContainer(isShowing = false) {
