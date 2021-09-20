@@ -293,7 +293,7 @@ class AppModel extends EventEmitter {
     // const filterModel = new FilterModel(generalConfig);
     const filterView = new FilterView(filterModel, {});
     const filterController = new FilterController(filterModel, filterView);
-    // this.filter = filterModel;
+    this.filter = filterModel;
     filterModel.init();
 
     const listFlat = new FlatsList(this);

@@ -77,6 +77,7 @@ class FlatsList {
         return;
       }
 
+      console.log(this);
       if (window.innerWidth <= 992) {
         this.filter.emit('hideFilter');
       }

@@ -228,28 +228,32 @@
       flex: 1 1 100%;
       padding: 0 10px;
       &-wrap {
+        height: calc(100% - var(--s3d-margin-top) - 90px);
         .s3d__favourites {
           margin: 0 0 0 40px;
         }
+        
       }
       &__button{
         &--reset {
           &-icon {
             margin: 0;
+            margin-right: 10px;
           }
           span {
-            display: none;
+            // display: none;
           }
         }
         &--apply {
           display: flex;
+          display: none;
           width: 80px;
           margin: auto 0 0 5px;
         }
       }
       &__rooms {
         &--label{
-          height: 30px;
+          height: 25px;
           width: 30px;
         }
       }
@@ -267,9 +271,21 @@
       }
       &__head {
         padding: 0 20px;
+        padding: 0px 10px 0px 10px;
       }
       &__mini-info {
         padding: 0 10px;
+      }
+      &__option {
+        &--input {
+          height: 14px;
+          width: 14px;
+          flex-shrink: 0;
+        }
+        &--input:after {
+          width: 14px;
+          height: 14px;
+        }
       }
     }
   }

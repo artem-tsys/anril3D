@@ -480,6 +480,7 @@
       margin-left: 5px;
       &--svg {
         transform-origin: center;
+        transform-box: fill-box;
         fill: $color2;
         stroke: none;
       }

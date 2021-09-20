@@ -102,7 +102,7 @@
   .s3d {
     &-ctr {
       grid-gap: 15px;
-      grid-template-rows: var(--s3d-header-height) 2px 30px auto 1fr auto auto 50px;
+      grid-template-rows: var(--s3d-header-height) 2px 30px auto 1fr auto auto 60px;
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
       grid-template-areas: '. . . back . .'
       '. . . . . .'
@@ -117,6 +117,10 @@
         flex-direction: row;
         width: 100%;
         padding: 0;
+        margin-top: 0;
+        :nth-child(n+2) {
+          margin-left: 5px;
+        }
         &__title {
           display: none;
         }
@@ -127,12 +131,14 @@
       }
       &__select {
         flex: 1 1 100%;
-        height: 50px;
+        height: 60px;
         justify-content: center;
         text-align: center;
-        background: rgba(0, 114, 117, 1);
+        background: #FCEBEF;
+        margin-top: 0;
         &:disabled {
-          background: rgba(114, 114, 114, 1);
+          background: #FFFFFF;
+          opacity: 0.6;
         }
       }
 
@@ -143,6 +149,7 @@
         margin: auto 20px 0 auto;
         &-filter {
           margin: 0 auto 0 20px;
+          margin: 0 auto 0 30px;
         }
       }
       &__favourites {
@@ -165,6 +172,16 @@
         svg {
           height: 20px;
           width: 19px;
+        }
+      }
+      &__open-filter {
+        &__text {
+          font-size: 12px;
+          line-height: 18px;
+        }
+        &__icon svg {
+          width: 25px;
+          height: 16px;
         }
       }
     }
