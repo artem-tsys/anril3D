@@ -44,6 +44,15 @@
 
     }
   }
+  .s3d-breadcrumbs {
+    padding-top: 0;
+    &__link,
+    &__current {
+      font-size: 10px;
+      line-height: 1.2em;
+
+    }
+  }
   .s3d__slideModule{
     padding: 0 0 50px;
 

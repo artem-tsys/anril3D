@@ -247,25 +247,36 @@
       height: 100%;
       overflow-y: auto;
       overflow-x: hidden;
-      padding: 0 20px 0 0;
+      padding: 30px 30px 40px 30px;
       grid-template-columns: 254px 20px 1fr auto;
       grid-template-rows: var(--s3d-margin-top) auto auto auto 1fr auto auto auto 50px;
-      grid-template-areas:
-          'info . . .'
-          'info . title favourite'
-          'info . links links'
-          'info . type type'
-          'info . img img'
-          'info . view view'
-          'info . button button'
-          'info . plane plane'
-          'info . . .';
+      // grid-template-areas:
+      //     'info . . .'
+      //     'info . title favourite'
+      //     'info . links links'
+      //     'info . type type'
+      //     'info . img img'
+      //     'info . view view'
+      //     'info . button button'
+      //     'info . plane plane'
+      //     'info . . .';
+        grid-template-rows: 60px calc(50% - 30px) calc(50% - 30px);
+        grid-template-columns: calc(50% - 1px) 1px calc(50% - 1px);
+      grid-template-areas: 
+      'links links links'
+      'middle verticalLine plane'
+      'info verticalLine plane';
+      &__wrap {
+        padding: var(--s3d-margin-top) 30px 60px;
+      }
       &__left {
-        position: fixed;
-        top: 0;
-        height: calc(var(--vh, 1vh) * 100 - 50px);
-        width: 256px;
-        padding: calc(var(--s3d-margin-top) + 43px) 0 0 0;
+        // position: fixed;
+        // top: 0;
+        // height: calc(var(--vh, 1vh) * 100 - 50px);
+        // width: 256px;
+        // padding: calc(var(--s3d-margin-top) + 43px) 0 0 0;
+        padding: 0 40px 0 0;
+        height: auto;
         &-buttons {
           width: 100%;
           margin: auto 0 30px 0;
@@ -279,7 +290,7 @@
       }
       &__card {
         max-height: calc(100% - 100px);
-        padding: 25px 20px;
+        padding: 25px 0px;
       }
 
       //&__compass {
@@ -290,10 +301,17 @@
       }
       &__image {
         max-width: none;
-        padding: 20px 0 0 0;
+        padding: 0px 0 0 0;
+        margin-top: 0;
+        margin-bottom: 7px;
       }
       &__floor {
+        --self-width: 251px;
+        --self-height: calc(var(--self-width) / 251px * 224px);
+        width: var(--self-width);
+        height: var(--self-height);
         margin: 70px 0 0 0;
+        margin: 5px auto 0 auto;
       }
       //&__pdf {
       //  margin: 0 0 50px 20px;
@@ -306,18 +324,20 @@
         font-size: 12px;
       }
       &__right {
-        padding: 0 50px 30px;
+        padding: 0 40px 30px;
         margin: 0;
         border: none;
       }
       &__callback {
-        margin: 30px 0 0;
+        // margin: 30px 0 0;
         max-width: 360px;
         &-wrap {
           margin: 0;
         }
       }
-
+      &__buttons-type :nth-child(n+2) {
+        margin-left: 0;
+      }
       &__data {
         &-title {
           margin-top: 20px;
