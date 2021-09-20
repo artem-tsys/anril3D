@@ -57,26 +57,6 @@
   }
 }
 
-//@media screen and (max-width: 1023px) {
-//  .s3d {
-//    &-filter {
-//      &__close {
-//        &-wrap {
-//          &:hover {
-//            transform: translate(80%, 0)!important;
-//            .s3d-filter__close {
-//              border-color: #ffffff;
-//              transform: rotate(90deg);
-//            }
-//            span{
-//              color: $color1;
-//            }
-//          }
-//        }
-//      }
-//    }
-//  }
-//}
 @media screen and (max-width: 1680px) {
   .s3d {
     &-filter .irs--flat .irs-handle {
@@ -229,6 +209,9 @@
       padding: 0 10px;
       &-wrap {
         height: calc(100% - var(--s3d-margin-top) - 90px);
+        top: auto;
+        /* button bottom margin + controller grid gap */
+        bottom: calc(60px + 15px);
         .s3d__favourites {
           margin: 0 0 0 40px;
         }
@@ -297,6 +280,7 @@
       &-wrap {
         &[data-type="plannings"] {
           width: 100%;
+          width: 345px;
           height: auto;
           box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.6);
           .s3d-filter {
@@ -307,6 +291,7 @@
             &__button{
               &--reset {
                 margin: auto 0 0 auto;
+                margin: 20px 0 0 auto;
                 span {
                   display: block;
                 }
@@ -318,7 +303,8 @@
             }
             &__close {
               &-wrap {
-                right: 30px;
+                top: 20px;
+                right: 20px;
                 height: 30px;
                 width: 30px;
                 padding: 0;
@@ -337,6 +323,25 @@
               font-size: 12px;
             }
           }
+        }
+      }
+      &__top {
+        // max-height: calc(100vh - var(--s3d-margin-top) - 250px);
+        // padding-bottom: 20px;
+      }
+      &__option {
+        &__list {
+          column-gap: 0;
+        }
+        &__input {
+          &--wrap {
+            white-space: nowrap;
+          }
+        }
+      }
+      &__rooms {
+        &--label {
+          line-height: 25px;
         }
       }
     }

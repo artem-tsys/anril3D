@@ -6,8 +6,9 @@ class FilterView extends EventEmitter {
     super();
     this._model = model;
     this._elements = elements;
-
-    this.filterTopHeight = document.querySelector('.s3d-filter__top').offsetHeight;
+    if (!this.matchTablet()) {
+      this.filterTopHeight = document.querySelector('.s3d-filter__top').offsetHeight;
+    }
 
     $('.js-s3d-filter__button--reset').on('click', () => {
       this.emit('resetFilter');
@@ -47,13 +48,23 @@ class FilterView extends EventEmitter {
   }
 
   updateHeightFilter() {
-    this.filterTopHeight = document.querySelector('.s3d-filter__top').offsetHeight;
+    if (this.matchTablet()) {
+      this.filterTopHeight = '';
+    } else {
+      this.filterTopHeight = document.querySelector('.s3d-filter__top').offsetHeight;
+    }
   }
 
   // показать фильтр
   show() {
     $('.s3d-filter__top').css('height', this.filterTopHeight);
     $('.js-s3d-filter').addClass('s3d-open-filter');
+  }
+
+  matchTablet() {
+    return window
+      .matchMedia('(min-width: 575px) and (max-width:992px)')
+      .matches;
   }
 
   // спрятать фильтр
