@@ -231,7 +231,7 @@
       &__links {
         align-items: flex-start;
         align-content: flex-start;
-        margin: 20px 0 0;
+        // margin: 20px 0 0;
       }
       &__show-3d {
         margin: 0 0 0 0;
@@ -247,9 +247,10 @@
       height: 100%;
       overflow-y: auto;
       overflow-x: hidden;
-      padding: 30px 30px 40px 30px;
+      padding: 30px 40px 40px 30px;
       grid-template-columns: 254px 20px 1fr auto;
       grid-template-rows: var(--s3d-margin-top) auto auto auto 1fr auto auto auto 50px;
+      margin-top: 20px;
       // grid-template-areas:
       //     'info . . .'
       //     'info . title favourite'
@@ -260,7 +261,7 @@
       //     'info . button button'
       //     'info . plane plane'
       //     'info . . .';
-        grid-template-rows: 60px calc(50% - 30px) calc(50% - 30px);
+        grid-template-rows: 40px calc(50% - 20px) calc(50% - 20px);
         grid-template-columns: calc(50% - 1px) 1px calc(50% - 1px);
       grid-template-areas: 
       'links links links'
@@ -268,6 +269,9 @@
       'info verticalLine plane';
       &__wrap {
         padding: var(--s3d-margin-top) 30px 60px;
+      }
+      &__middle {
+        padding-right: 40px;
       }
       &__left {
         // position: fixed;
@@ -282,6 +286,26 @@
           margin: auto 0 30px 0;
         }
       }
+      &__list {
+        height: calc((30px * 2) + (2em * 8));
+        max-height: none;
+        flex: auto;
+      }
+      &__card-bottom {
+        .s3d-flat__card-row {
+          margin-bottom: 5px;
+        }
+      }
+      &__bottom-buttons-wrap {
+        flex-wrap: wrap;
+      }
+      &__window-view-call-popup {
+        order: -1;
+        // display: flex;
+        width: 100%;
+        /* text-align: right; */
+        justify-content: flex-end;
+      }
       &__links {
         padding: 0;
       }
@@ -290,7 +314,7 @@
       }
       &__card {
         max-height: calc(100% - 100px);
-        padding: 25px 0px;
+        padding: 0px 0px;
       }
 
       //&__compass {
@@ -312,6 +336,7 @@
         height: var(--self-height);
         margin: 70px 0 0 0;
         margin: 5px auto 0 auto;
+        margin: -20px auto 0 auto;
       }
       //&__pdf {
       //  margin: 0 0 50px 20px;
@@ -320,13 +345,18 @@
         flex-grow: 0;
       }
       &__el {
+        height: calc(1em + 10px);
         height: calc(1em + 15px);
-        font-size: 12px;
+        font-size: 10px;
+        line-height: 14px;
       }
       &__right {
-        padding: 0 40px 30px;
+        padding: 0 0px 30px 40px;
         margin: 0;
         border: none;
+      }
+      &__right-top {
+        padding-right: 5px;
       }
       &__callback {
         // margin: 30px 0 0;
@@ -443,6 +473,7 @@
         max-height: none;
         padding: 0;
       }
+      
       &__left {
         position: static;
         height: initial;
