@@ -75,8 +75,27 @@ class FlatView extends EventEmitter {
 
   setHtml(content) {
     $(this._model.wrapper).html(content);
+    // $(this._model.wrapper).html(this.getGradient());
+    /* Вставка градиента в план этажа для ховера */
+    $(this._model.wrapper)[0].querySelector('.appart__hover')
+      .insertAdjacentHTML('beforebegin', this.getGradient());
   }
-  
+
+  getGradient() {
+    return `
+        <linearGradient xmlns="http://www.w3.org/2000/svg" id="gradient-fill" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#1f005c"/>
+            <stop offset="10%" stop-color="#5b0060"/>
+            <stop offset="28%" stop-color="#870160"/>
+            <stop offset="42%" stop-color="#ac255e"/>
+            <stop offset="57%" stop-color="#ca485c"/>
+            <stop offset="71%" stop-color="#e16b5c"/>
+            <stop offset="85%" stop-color="#f39060"/>
+            <stop offset="100%" stop-color="#ffb56b"/>
+        </linearGradient>
+    `;
+  }
+
   updateFlatData(data) {
     const {
       flat, id,

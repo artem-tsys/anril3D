@@ -333,6 +333,10 @@
       cursor: pointer;
       transition: background-size 0.6s ease-in-out, color .3s ease-in-out;
       color: #FFFFFF;
+      &-1 {
+        background: linear-gradient(
+          264.58deg, #9d69f778 3.41%, #b560e278 19.3%, #c753ce66 35.2%, #d25ba88a 46.86%, #e176998a 60.64%, #f0b19b78 88.72%, #f9db717a 101.97%);;
+      }
       &:after {
         content: '';
         position: absolute;
@@ -363,11 +367,14 @@
         fill: transparent;
         stroke: none;
         opacity: 0.7;
-        transition: all .3s ease-in;
+        transition: all .3s ease-in-out;
       }
       polygon.u-svg-plan--active{
         fill: $color1;
       }
+    }
+    &__hover-gradient {
+      display: none;
     }
     &__like{
       position: relative;

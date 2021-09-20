@@ -24,7 +24,8 @@
       &__floor {
         a:hover polygon{
           fill: $color2;
-          opacity: .5;
+          fill: url(#gradient-fill);
+          opacity: .3;
         }
       }
       &__like {
