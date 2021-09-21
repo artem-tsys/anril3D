@@ -156,6 +156,7 @@ class FilterModel extends EventEmitter {
         onFinish(e) {
           updateInputs(e);
           self.filterFlatStart({ min: e.from, max: e.to, ...{ type: config.type } });
+          self.emit('updateViewOfCurrentState', { min: e.from, max: e.to, ...{ type: config.type } });
         },
         onUpdate: updateInputs,
       });
@@ -224,7 +225,7 @@ class FilterModel extends EventEmitter {
   updateAllParamFilter(filterSettings) {
     for (const key in filterSettings) {
       const select = filterSettings[key];
-      const typeFilterParam = this.getTypeFilterParam(key)
+      const typeFilterParam = this.getTypeFilterParam(key);
       let { value } = _.cloneDeep(select);
       switch (typeFilterParam) {
           case 'checkbox':
@@ -234,6 +235,10 @@ class FilterModel extends EventEmitter {
               }
             }
             value = value.join(', ');
+            // console.log('model filter', value);
+            this.emit('updateViewOfCurrentState', {
+              type: key, value, key: 'amount',
+            });
             this.emit('updateMiniInfo', {
               type: key, value, key: 'amount',
             });
@@ -254,7 +259,7 @@ class FilterModel extends EventEmitter {
 
   getTypeFilterParam(name) {
     for (const type in this.types) {
-      if (this.types[type].includes(name)) return type;
+      if (type.includes(name)) return this.types[type];
     }
     return null;
   }

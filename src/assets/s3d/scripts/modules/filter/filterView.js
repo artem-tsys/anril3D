@@ -45,10 +45,29 @@ class FilterView extends EventEmitter {
     model.on('setAmountSelectFlat', data => { this.setAmountSelectFlat(data); });
     model.on('updateMiniInfo', data => { this.updateMiniInfo(data); });
     model.on('updateHeightFilter', () => { this.updateHeightFilter(); });
+    model.on('updateViewOfCurrentState', (data) => {
+      this.updateViewOfCurrentState(data);
+    });
+  }
+
+  updateViewOfCurrentState(data) {
+    // console.log('update emit');
+    const { type } = data;
+    // const datasetNameForRender = 'filterStateName';
+    const datasetNameForRender = 'data-filter-state-name';
+    const elemsToUpdate = document.querySelectorAll(`[${datasetNameForRender}*='${type}']`);
+    elemsToUpdate.forEach(elForUpdateArg => {
+      const elForUpdate = elForUpdateArg;
+      const renderTypeDatasetValue = elForUpdate
+        .getAttribute(datasetNameForRender);
+      const typeOfUpdate = renderTypeDatasetValue.split('~')[1]; // mix or max
+      elForUpdate.textContent = data[typeOfUpdate];
+    });
+    // console.log();
   }
 
   updateHeightFilter() {
-    if (this.matchTablet()) {
+    if (this.matchTablet() || this.matchMobile()) {
       this.filterTopHeight = '';
     } else {
       this.filterTopHeight = document.querySelector('.s3d-filter__top').offsetHeight;
@@ -64,6 +83,12 @@ class FilterView extends EventEmitter {
   matchTablet() {
     return window
       .matchMedia('(min-width: 575px) and (max-width:992px)')
+      .matches;
+  }
+
+  matchMobile() {
+    return window
+      .matchMedia('(max-width: 600px)')
       .matches;
   }
 

@@ -244,23 +244,23 @@ block content
             | Поверх:
           .s3d-filter__mini-info__floor--amount.s3d-filter__mini-info__amount
             span від
-            span.js-s3d-filter__mini-info__floor--amount-from(data-type='min') 0
+            span.js-s3d-filter__mini-info__floor--amount-from(data-type='min' data-filter-state-name="floor~min") 0
             span до
-            span.js-s3d-filter__mini-info__floor--amount-to(data-type='max') 50
+            span.js-s3d-filter__mini-info__floor--amount-to(data-type='max' data-filter-state-name="floor~max") 50
         .s3d-filter__mini-info__elem.s3d-filter__mini-info__area(data-type='area')
           .s3d-filter__mini-info__title
             | Площа м
             sup 2
           .s3d-filter__mini-info__area--amount.s3d-filter__mini-info__amount
             span від
-            span.js-s3d-filter__mini-info__area--amount-from(data-type='min') 0
+            span.js-s3d-filter__mini-info__area--amount-from(data-type='min' data-filter-state-name="area~min") 0
             span до
-            span.js-s3d-filter__mini-info__area--amount-to(data-type='max') 1000
+            span.js-s3d-filter__mini-info__area--amount-to(data-type='max' data-filter-state-name="area~max") 1000
         .s3d-filter__mini-info__elem.s3d-filter__mini-info__flat(data-type='rooms')
           .s3d-filter__mini-info__title
             | Комнат
           .s3d-filter__mini-info__flat--amount.s3d-filter__mini-info__amount
-            span.js-s3d-filter__mini-info__flat--amount(data-type='amount') 1, 2
+            span.js-s3d-filter__mini-info__flat--amount(data-type='amount' data-filter-state-name="rooms") 1, 2
         .s3d-filter__mini-info__elem.s3d-filter__mini-info__button
           button(class='s3d-filter__mini-info__button js-s3d-filter__mini-info__button') змінити
 

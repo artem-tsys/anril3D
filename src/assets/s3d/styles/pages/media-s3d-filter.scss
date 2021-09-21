@@ -356,6 +356,30 @@
   .s3d {
     &-filter {
       padding: 0 0px;
+      margin-right: -15px;
+      width: calc(100% + 15px);
+      padding-right: 15px;
+      &-wrap[data-type="plannings"] .s3d-filter__table {
+        display: flex;
+      }
+      &-wrap[data-type="plannings"]:not(.s3d-filter__scroll-active) .s3d-filter__table{
+        max-height: 200px;
+      }
+      &-wrap[data-type="plannings"] .s3d-filter__hide {
+        display: block;
+        bottom: -30px;
+        // &::before {
+        //   content: '';
+        //   position: absolute;
+        //   top: 50%;
+        //   left: 50%;
+        //   transform: translate(-50%,-50%);
+        //   width: 200%;
+        //   height: 1px;
+        //   background-color: red;
+        //   z-index: -1;
+        // }
+      }
       &-wrap {
         width: 100%;
         bottom: 0;
@@ -368,7 +392,8 @@
       &__top {
         padding-left: 10px;
         padding-right: 10px;
-        padding-bottom: 35px;
+        padding-bottom: 0px;
+        max-height: calc(100vh - var(--s3d-margin-top) - 190px - 40px);
         .s3d__favourites {
           margin: 0 0 0 10px;
         }
@@ -425,6 +450,17 @@
       &__amount-flat {
         padding: 0 0 0 10px;
         height: 40px;
+      }
+      &__scroll-active &__mini-info {
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+      &__mini-info__button {
+        text-align: right;
+        padding: 0;
+      }
+      .irs-min, .irs-max {
+        display: none;
       }
     }
   }
