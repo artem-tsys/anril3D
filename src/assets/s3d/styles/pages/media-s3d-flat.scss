@@ -269,6 +269,7 @@
       'info verticalLine plane';
       &__wrap {
         padding: var(--s3d-margin-top) 30px 60px;
+        
       }
       &__middle {
         padding-right: 40px;
@@ -437,10 +438,10 @@
         }
       }
       &__show-3d {
-        margin: 10px 0 0 0;
+        // margin: 10px 0 0 0;
       }
       &__like {
-        margin: 10px 0 0 0;
+        // margin: 10px 0 0 0;
       }
     }
   }
@@ -449,21 +450,34 @@
 @media screen and (max-width: 600px) {
   .s3d {
     &-flat {
-      padding: 0 15px;
+      padding: 20px 15px;
       grid-gap: 0 15px;
       grid-template-columns: 1fr auto;
-      grid-template-rows: var(--s3d-margin-top) auto auto auto 1fr auto auto auto auto 50px;
+      grid-template-rows: repeat(10, auto);
       grid-template-areas:
-          '. .'
-          'title favourite'
-          'links links'
-          'type type'
-          'img img'
-          'view view'
-          'info info'
-          'button button'
-          'plane plane'
-          '. .';
+
+          'links'
+          'middle'
+          'plane'
+          'title'
+          'view'
+          'info'
+          'button'
+          'img'
+          'verticalLine'
+          '.'
+          ;
+      grid-gap: 0 0px;
+      grid-template-columns: 100%;
+      width: 100%;
+      height: auto;
+      max-height: 100%;
+      &__wrap {
+        // overflow-y: auto;
+        padding-left: 10px;
+        padding-right: 10px;
+        
+      }
       &__favourites {
         margin: 0;
         grid-column: 2;
@@ -491,6 +505,10 @@
       }
       &__right {
         padding: 0 10px 30px;
+        &-top {
+          font-size: 20px;
+line-height: 26px;
+        }
       }
       &__pdf {
         margin: 0 auto 0 0;
@@ -498,6 +516,7 @@
       &__compass {
         order: 3;
         margin: 0 0 0 auto;
+        transform: translateY(-100%);
       }
       &__mini-info {
         padding: 10px 0 0;
@@ -506,11 +525,14 @@
         padding: 0;
       }
       &__list {
-        padding: 20px 35px;
+        padding: 20px 0px;
+        height: calc((30px * 2) + (2em * 2.5));
+        overflow-x: hidden;
       }
       &__links {
         padding: 0;
         margin: 0;
+        margin-bottom: 25px;
       }
       &__mobile__header__bg {
         width: calc(100% + 30px);
@@ -518,6 +540,45 @@
         margin: 0 0 0 -15px;
         grid-row: 1 /span 2;
         grid-column: 1 /span 2;
+      }
+      &__bottom-buttons-wrap {
+        // margin-top: 16px;
+      }
+      &__image {
+        width: 100%;
+        margin-bottom: 16px;
+        height: auto;
+      }
+      &__middle {
+        padding-right: 0;
+        margin-bottom: 30px;
+        &:after {
+          content: '';
+          display: inline-block;
+          width: 100%;
+          height: 1px;
+          margin-top: 30px;
+          background-color: #DED2D4;
+        }
+      }
+      &__transparent-button {
+        margin-bottom: 10px;
+      }
+      &__floor {
+        margin-top: 0;
+        margin-bottom: 20px;
+      }
+      &__title {
+        margin-bottom: 12px;
+      }
+      &__data {
+        height: 35px;
+      }
+      &__window-view-call-popup {
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+        margin-bottom: 15px;
       }
     }
   }
