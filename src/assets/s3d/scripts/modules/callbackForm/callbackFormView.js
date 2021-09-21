@@ -4,6 +4,7 @@ import i18next from 'i18next';
 import EventEmitter from '../eventEmitter/EventEmitter';
 import FormMonster from '../form/form';
 import SexyInput from '../form/input/input';
+import { langDetect } from '../form/helpers/helpers';
 
 export default class CallBackFormView extends EventEmitter {
   constructor(data) {
@@ -16,7 +17,7 @@ export default class CallBackFormView extends EventEmitter {
 
   render() {
     document.body.insertAdjacentHTML('beforeend', this.getView());
-    this.form = document.querySelector('.s3d-form');
+    this.form = document.querySelector('.s3d-form__overlay');
     this.addCloseButton();
   }
 
@@ -39,11 +40,12 @@ export default class CallBackFormView extends EventEmitter {
     el.addEventListener('click', () => {
       this.emit('closeForm');
     });
-    this.form.insertAdjacentElement('afterbegin', el);
+    this.form.querySelector('form').insertAdjacentElement('afterbegin', el);
   }
 
   getView() {
     return `
+    <div class="s3d-form__overlay">
         <form class="s3d-form">
             <div class="s3d-form__title">Наш менеджер зв’яжеться з Вами у зручний час</div>
             <div class="s3d-form__input-group form-field-input" data-field-input data-field-name data-status="field--inactive">
@@ -66,18 +68,26 @@ export default class CallBackFormView extends EventEmitter {
             <div class="s3d-form__input-group s3d-form__checkbox-group">
               <input id="s3d-callback-tel-date" data-trigger-for="wanted-date" value="individual" name="date" type="radio" class="s3d-form__checkbox">
               <label for="s3d-callback-tel-date" class="s3d-form__checkbox-label">Вказати час</label>
-              <input class="s3d-form__input s3d-form__checkbox-input" autocomplete="off" name="wanted-date">
+              <div class="s3d-form__checkbox-input-wrap">
+                <input class="s3d-form__input s3d-form__checkbox-input" autocomplete="off" name="wanted-date" placeholder="Вказати зручний час">
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="#AF989C" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.5 10.5C4.08579 10.5 3.75 10.8358 3.75 11.25C3.75 11.6642 4.08579 12 4.5 12H10.5C10.9142 12 11.25 11.6642 11.25 11.25C11.25 10.8358 10.9142 10.5 10.5 10.5H4.5Z" />
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 0C10.0858 0 9.75 0.335787 9.75 0.75V1.5H5.25V0.75C5.25 0.335786 4.91421 0 4.5 0C4.08579 0 3.75 0.335787 3.75 0.75V1.5H3C1.34315 1.5 0 2.84315 0 4.5V12C0 13.6569 1.34315 15 3 15H12C13.6569 15 15 13.6569 15 12V4.5C15 2.84315 13.6569 1.5 12 1.5H11.25V0.75C11.25 0.335786 10.9142 0 10.5 0ZM3.75 3.75V3H3C2.17157 3 1.5 3.67157 1.5 4.5V12C1.5 12.8284 2.17157 13.5 3 13.5H12C12.8284 13.5 13.5 12.8284 13.5 12V4.5C13.5 3.67157 12.8284 3 12 3H11.25V3.75C11.25 4.16421 10.9142 4.5 10.5 4.5C10.0858 4.5 9.75 4.16421 9.75 3.75V3H5.25V3.75C5.25 4.16421 4.91421 4.5 4.5 4.5C4.08579 4.5 3.75 4.16421 3.75 3.75Z"/>
+                  </svg>
+              </div>
             </div>
-            <div class="s3d-form__subtitle">* Поля обов’язкові для заповнення</div>
-            <div class="form-btn-wrap">
+            <div class="s3d-form__submit-group">
+              <div class="form-btn-wrap"></div>
+              <div class="s3d-form__subtitle">* Поля обов’язкові для заповнення</div>
+              <button class="s3d-form__submit" data-btn-submit="data-btn-submit" type="submit">
+                Відправити
+                <div data-btn-submit-text></div>
+              </button>
             </div>
-            <button class="s3d-form__submit" data-btn-submit="data-btn-submit" type="submit">
-              Відправити
-              <div data-btn-submit-text></div>
-            </button>
             
             
         </div>
+      </div>
         ${this.addToster()}
     `;
   }
@@ -88,8 +98,7 @@ export default class CallBackFormView extends EventEmitter {
 
   setoutsideClickClose() {
     window.addEventListener('click', evt => {
-      if (evt.target.closest('.s3d-form') === null
-      && evt.target.closest('.js-callback-form') === null) this.close();
+      if (evt.target.classList.contains('s3d-form__overlay')) this.close();
     });
   }
 
@@ -103,22 +112,18 @@ export default class CallBackFormView extends EventEmitter {
     this.model.on('firstRender', () => {
       this.render();
     });
-    window.addEventListener('click', () => {
-      // if (evt.target.classList.contains('js-callback-form')) {
-      //   this.emit('openForm');
-      // }
-    });
   }
 
   init() {
     this.render();
     this.setEmmits();
-    // this.setoutsideClickClose();
+    this.setoutsideClickClose();
     this.initHandlers();
     this.handleDatePicker();
   }
 
   handleDatePicker() {
+    jQuery.datetimepicker.setLocale(langDetect());
     const triggerForClearCalendar = document
       .querySelector('[data-trigger-for="wanted-date"]');
     this.datePicker = jQuery('[name="wanted-date"]')
@@ -137,7 +142,7 @@ export default class CallBackFormView extends EventEmitter {
       /* eslint-enable */
       succesEventName: 'succesSend',
       elements: {
-        $form: self.form,
+        $form: self.form.querySelector('form'),
         showSuccessMessage: true,
         $btnSubmit: self.form.querySelector('[data-btn-submit]'),
         fields: {

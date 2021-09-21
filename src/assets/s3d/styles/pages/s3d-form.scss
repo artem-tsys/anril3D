@@ -1,28 +1,35 @@
-.s3d-form {
+.s3d-form__overlay {
     position: fixed;
-    left: 50%;
-    top: 50%;
+    width: 100vw;
+    height: 100vh;
+    background-color: #50505078;
+    opacity: 0.25;
+
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    cursor: pointer;
+    * {
+        cursor: initial;
+    }
+
+}
+.s3d-form {
+    // position: fixed;
+    position: relative;
     width: 600px;
     z-index: 1000;
-    transform: translate(-50%, -50%);
     background-color: white;
     padding: 60px;
-    display: flex;
-    flex-direction: column;
+    // display: flex;
+    // flex-direction: column;
     font-family: $default-font;
     color: #505050;
-    visibility: hidden;
-    &__overlay {
-        position: absolute;
-        z-index: -1;
-        background-color: $color2;
-        opacity: 0.25;
-        left: 50%;
-        top: 50%;
-        width: 100vw;
-        height: 100vh;
-         transform: translate(-50%,-50%);
-    }
+    
     &__title {
         margin-bottom: 30px;
         font-size: 18px;
@@ -35,7 +42,20 @@
         display: flex;
         flex-direction: column;
         margin-bottom: 30px;
+        margin-bottom: 35px;
         position: relative;
+        // input::placeholder {
+        //     font-size: 14px;
+        //         line-height: 26px;
+        // }
+        &:focus-within .input-placeholder {
+            display: block;
+            opacity: 1;
+            animation: fadeDown .3s ease-in-out 1;
+        }
+        &:focus-within input {
+            color: #1A191D;
+        }
     }
     
     &__input {
@@ -53,25 +73,24 @@
     }
     .input-message {
         position: absolute;
-        font-size: 8px;
-        line-height: 100%;
+        font-size: 10px;
+        line-height: 140%;
         border: none;
         padding-bottom: 0;
         left: 0;
         top: 100%;
         width: 100%;
         padding-top: 5px;
-        color: $color1;
+        color: #F04923;
         &:empty {
             padding: 0;
         }
     }
     &__submit {
         position: relative;
-    flex: 1 1 auto;
     width: 180px;
     height: 50px;
-    margin: 30px 0 0 0;
+    margin: 0 0 0 0;
     padding: 0;
     border: none;
     font-family: "Montserrat", sans-serif;
@@ -87,7 +106,7 @@
     background-size: 100% 100%;
     cursor: pointer;
     overflow: hidden;
-    transition: background-size 0.6s ease-in-out;
+    transition: background-size 0.6s ease-in-out, color .3s ease-in-out;
     pointer-events: painted;
     z-index: 1;
         &:hover {
@@ -123,10 +142,24 @@
         margin-bottom: 15px;
        
     }
+    &__checkbox-input-wrap {
+        width: 100%;
+        position: relative;
+        margin-top: 25px;
+        &>svg {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 15px;
+            display: none;
+        }
+    }
     &__checkbox-input {
         width: 100%;
-        margin-top: 10px;
         display: none;
+        cursor: pointer;
     }
     &__checkbox {
         position: relative;
@@ -168,7 +201,8 @@
         }
         
     }
-    &__checkbox:checked ~ &__checkbox-input {
+    &__checkbox:checked ~ &__checkbox-input-wrap svg,
+    &__checkbox:checked ~ &__checkbox-input-wrap &__checkbox-input {
         display: block;
     }
     &__close {
@@ -179,8 +213,14 @@
         height: 15px;
         cursor: pointer;
     }
+    &__submit-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 35px;
+    }
     [data-status="field--error"] input {
-        border-color: $color1;
+        border-color: #F04923;
     }
     [data-status="field--success"] input {
         border-color: green;
@@ -190,12 +230,39 @@
     }
     .input-placeholder {
         display: none;
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        font-size: 10px;
+        line-height: 14px;
+        color: #AFAFAF;
+        opacity: 0;
+        transition: .3s ease-in-out;
+
     }
     [data-btn-submit-text] {
         display: none;
     }
     [data-input-message] {
         // display: none;
+    }
+    .form-btn-wrap:empty {
+        display: none;
+    }
+
+    [name="wanted-date"] {
+        position: relative;
+        &:after {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 15px;
+            background: red;
+        }
+
     }
     
 }
@@ -319,4 +386,15 @@
 
   .qs-datepicker-container {
 
+  }
+
+  @keyframes fadeDown {
+      from {
+          transform: translateY(100%);
+          opacity: 0;
+      }
+      to {
+          transform: translateY(0%);
+          opacity: 1;
+      }
   }
