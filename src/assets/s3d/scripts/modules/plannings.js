@@ -65,7 +65,7 @@ class Plannings {
     });
     if (this.matchMobile()) {
       this.wrapperNode.parentElement.addEventListener('scroll', event => {
-        paginationScroll(event.target, this.showFlatList, this.currentShowAmount, this.createListCard.bind(this));
+        paginationScroll(this.wrapperNode, this.showFlatList, this.currentShowAmount, this.createListCard.bind(this));
       });
     } else {
       this.wrapperNode.addEventListener('scroll', event => {

@@ -144,7 +144,14 @@ line-height: 28px;
       &-icon {
         margin-left: 7px;
       }
-
+     
+    }
+    &__list {
+      margin-bottom: 15px;
+    }
+    // &__list>.s3d-card~.s3d-card,
+    &__right>.s3d-card~.s3d-card {
+      margin-top: 15px;
     }
   }
 }

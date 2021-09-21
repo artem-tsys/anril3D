@@ -449,6 +449,49 @@
 
 @media screen and (max-width: 600px) {
   .s3d {
+    &__wrapper__flat {
+      .s3d-flat__favourites.s3d-hidden {
+        display: none;
+      }
+      .s3d-flat__favourites {
+        width: auto;
+        width: 100%;
+        height: auto;
+        background-color: transparent;
+        justify-content: flex-end;
+        margin-top: 15px;
+        margin-bottom: -10px;
+        .s3d-flat__favourites--text {
+          display: flex;
+        }
+        .s3d-flat__favourites-icon {
+          height: 10px;
+        }
+        .s3d-flat__favourites-amount {
+          position: static;
+          margin-left: 0px;
+          margin-right: 7px;
+          background-color: transparent;
+          color: $color2;
+          width: auto;
+          &:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            width: 1px;
+            background-color: #000;
+            margin-right: 10px;
+          }
+        }
+        svg {
+          fill: $color1;
+          width: 12px;
+          height: 10px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+    }
     &-flat {
       padding: 20px 15px;
       grid-gap: 0 15px;

@@ -1,5 +1,23 @@
 {
   "translation": {
+    "name": "Name:*",
+    "phone": "Phone:*",
+    "send": "Sand",
+    "sending": "Sanding",
+    "field_too_short": "phone must be at least {{cnt}} characters",
+    "field_too_long": "phone must be at most {{cnt}} characters",
+    "only_number": "only digits here",
+    "required": "this field is required",
+    "sendingSuccessTitle": "Message sent",
+    "sendingSuccessText": "Wait for the answers of our managers",
+    "sendingErrorText": "Wait for the answers of our managers",
+    "sendingErrorTitle": "An error has occurred",
+    "send_fail": "The message was not sent due to an unknown server error. Code: [send_fail] ",
+    "invalid_form": "The message was not sent for an unknown server error. Code: [invalid_form] ",
+    "front_error": "The message was not sent for an unknown server error. Code: [front_error] ",
+    "invalid_upload_file": "Error uploading file. Code: [invalid_upload_file] ",
+    "invalid_recaptcha": "Please fill in the captcha and try again. Code: [invalid_recaptcha] ",
+    "connectionFailed": "Server connection error",
     "helper": {
 
     },

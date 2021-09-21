@@ -80,13 +80,16 @@
   "dependencies": {
     "axios": "^0.21.1",
     "bezier-easing": "^2.1.0",
+    "cleave.js": "^1.6.0",
     "gsap": "^3.6.0",
     "i18next": "^20.2.3",
     "ion-rangeslider": "^2.3.1",
     "jquery": "^3.5.1",
     "lodash": "^4.17.20",
     "magnific-popup": "^1.1.0",
-    "rxjs": "^6.6.3"
+    "on-change": "^4.0.0",
+    "rxjs": "^6.6.3",
+    "yup": "^0.32.9"
   },
   "repository": {
     "type": "git",

@@ -235,8 +235,8 @@
   .s3d {
     &-ctr{
       grid-template-rows: calc(var(--s3d-header-height) +  var(--s3d-header-margin)) 40px auto 1fr auto 40px;
-      grid-template-areas: '. . back . . .'
-      'filter filter filter . favourite favourite'
+      grid-template-areas: '. . back . . favourite'
+      'filter filter filter . . .'
       'compass . . . . .'
       '. . . . . .'
       'title title title opens opens opens'
@@ -315,6 +315,9 @@
         }
         &-icon {
           margin: 0;
+        }
+        svg {
+          fill:#fff;
         }
       }
       &__title {

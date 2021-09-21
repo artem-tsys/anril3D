@@ -1,5 +1,9 @@
 import gsap from "gsap";
 import EventEmitter from '../eventEmitter/EventEmitter';
+import FormMonster from '../form/form';
+import SexyInput from '../form/input/input';
+import * as yup from 'yup';
+import i18next from 'i18next';
 export default class CallBackFormView extends EventEmitter {
   constructor(data) {
     super();
@@ -41,13 +45,18 @@ export default class CallBackFormView extends EventEmitter {
     return `
         <form class="s3d-form">
             <div class="s3d-form__title">Наш менеджер зв’яжеться з Вами у зручний час</div>
-            <div class="s3d-form__input-group">
-            <input id="s3d-callback-name" class="s3d-form__input" placeholder="Ім'я">
-            <label for="s3d-callback-name" class="s3d-form__input-message">Ім'я</label>
+            <div class="s3d-form__input-group form-field-input" data-field-input data-field-name data-status="field--inactive">
+              <input id="s3d-callback-name form-field__input" type="text" name="name" class="s3d-form__input" placeholder="Ім'я">
+              <label for="s3d-callback-name" class="s3d-form__input-message">Ім'я</label>
+              <div class="input-message" data-input-message></div>
+              <div class="input-placeholder">Ваш телефон</div>
             </div>
-            <div class="s3d-form__input-group">
-            <input class="s3d-form__input" id="s3d-callback-tel" placeholder="Телефон">
-            <label  class="s3d-form__input-message">Телефон</label>
+            <div class="s3d-form__input-group form-field-input" data-field-input data-field-phone data-status="field--inactive">
+              <input class="s3d-form__input form-field__input" id="s3d-callback-tel" inputmode="tel" name="phone" placeholder="Телефон">
+              <label  class="s3d-form__input-message">Телефон</label>
+              <div class="input-message" data-input-message></div>
+              <div class="input-placeholder">Ваш телефон</div>
+              
             </div>
             <div class="s3d-form__input-group s3d-form__checkbox-group">
                 <input id="s3d-callback-tel-now" name="date" type="radio" class="s3d-form__checkbox">
@@ -56,14 +65,30 @@ export default class CallBackFormView extends EventEmitter {
             <div class="s3d-form__input-group s3d-form__checkbox-group">
               <input id="s3d-callback-tel-date" name="date" type="radio" class="s3d-form__checkbox">
               <label for="s3d-callback-tel-date" class="s3d-form__checkbox-label">Вказати час</label>
-              <input class="s3d-form__input s3d-form__checkbox-input">
+              <input class="s3d-form__input s3d-form__checkbox-input" name="wanted-date">
             </div>
             <div class="s3d-form__subtitle">* Поля обов’язкові для заповнення</div>
-            <button class="s3d-form__submit" type="submit">Відправити</button>
-  
+            <div class="form-btn-wrap"></div>
+            <button class="s3d-form__submit" data-btn-submit="data-btn-submit" type="submit">
+              Відправити
+              <div data-btn-submit-text></div>
+            </button>
             
-        </form>
+            
+        </div>
+        ${this.addToster()}
     `;
+  }
+
+  addToster() {
+    return '<div class="toast-wrapper" data-toast-wrapper></div>';
+  }
+
+  setoutsideClickClose() {
+    window.addEventListener('click', evt => {
+      if (evt.target.closest('.s3d-form') === null
+      && evt.target.closest('.js-callback-form') === null) this.close();
+    });
   }
 
   setEmmits() {
@@ -86,5 +111,50 @@ export default class CallBackFormView extends EventEmitter {
   init() {
     this.render();
     this.setEmmits();
+    this.setoutsideClickClose();
+    this.initHandlers();
+  }
+
+  initHandlers() {
+    const self = this;
+    console.log(self);
+    // eslint-disable-next-line no-new
+    this.handler = new FormMonster({
+      /* eslint-enable */
+      succesEventName: 'succesSend',
+      elements: {
+        $form: self.form,
+        showSuccessMessage: true,
+        $btnSubmit: self.form.querySelector('[data-btn-submit]'),
+        fields: {
+          name: {
+            inputWrapper: new SexyInput({ 
+              animation: 'none', 
+              $field: self.form.querySelector('[data-field-name]') 
+            }),
+            rule: yup.string().required(),
+            defaultMessage: i18next.t('name'),
+            valid: false,
+            error: [],
+          },
+          phone: {
+            inputWrapper: new SexyInput({ 
+              animation: 'none',
+              $field: self.form.querySelector('[data-field-phone]'),
+              typeInput: 'phone',
+            }),
+            rule: yup
+              .string()
+              .required(i18next.t('required'))
+              .min(17, i18next.t('field_too_short', { cnt: 17 - 5 })),
+
+            defaultMessage: i18next.t('phone'),
+            valid: false,
+            error: [],
+          },
+        },
+
+      },
+    });
   }
 }
