@@ -22,6 +22,7 @@ block head
 block scripts
   script(defer src=`/wp-content/themes/${nameProject}/assets/s3d/scripts/vendors.bundle.js`)
   script(defer src=`/wp-content/themes/${nameProject}/assets/s3d/scripts/index.bundle.js`)
+  script(defer src=`/wp-content/themes/${nameProject}/static/jquery.datetimepicker.full.min.js`)
   //script(defer src='./assets/s3d/scripts/index.js')
   //script(defer src='./assets/scripts/home.js')
 block content
@@ -325,6 +326,7 @@ block content
 
 
     include ../includes/loader3d.html
+    
 block footer
   include ../includes/footer.pug
 

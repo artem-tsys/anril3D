@@ -107,7 +107,8 @@
     &__checkbox-label {
         font-size: 10px;
         line-height: 14px;
-        margin-left: 20px;
+        padding-left: 20px;
+        cursor: pointer;
         
     }
     &__input-message {
@@ -119,9 +120,12 @@
         flex-direction: row;
         flex-wrap: wrap;
         cursor: pointer;
+        margin-bottom: 15px;
+       
     }
     &__checkbox-input {
         width: 100%;
+        margin-top: 10px;
         display: none;
     }
     &__checkbox {
@@ -311,3 +315,8 @@
   /*
     * toast end
   */
+
+
+  .qs-datepicker-container {
+
+  }

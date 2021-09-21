@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', global => {
   preloader().show();
   init();
 });
-
+global.jQuery = $;
 // window.nameProject = 'montreal';
 window.nameProject = 'anril';
 window.defaultProjectPath = `/wp-content/themes/${window.nameProject}/`;
