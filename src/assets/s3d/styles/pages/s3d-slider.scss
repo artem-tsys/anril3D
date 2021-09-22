@@ -109,7 +109,7 @@
     }
     &.s3d-infoBox-active {
       opacity: 1;
-      visibility: visible;
+      // visibility: visible;
       pointer-events: painted;
       transition: transform 0.4s ease-in, opacity 0.15s ease-in;
       .s3d-card {

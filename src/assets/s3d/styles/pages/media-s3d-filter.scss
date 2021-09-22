@@ -64,6 +64,8 @@
       width: 10px;
     }
     &-filter {
+      padding: 0 0px;
+
       &-wrap {
         width: 345px;
       }
@@ -76,6 +78,7 @@
       &__title {
         font-size: 18px;
         line-height: 26px;
+        padding-left: 0;
       }
       &__floor {
         margin-top: 15px;
@@ -133,6 +136,7 @@
       &__mini-info {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1.5fr 1fr;
         grid-template-rows: auto;
         
         
@@ -255,6 +259,9 @@
           margin: 0 0 0 40px;
         }
       }
+      &__table {
+        margin: 30px 0 0 0;
+      }
       &__head {
         padding: 0 20px;
         padding: 0px 10px 0px 10px;
@@ -272,6 +279,9 @@
           width: 14px;
           height: 14px;
         }
+      }
+      &__hide {
+        bottom: -45px;
       }
     }
   }

@@ -467,6 +467,7 @@ class AppModel extends EventEmitter {
     config.infoBox = this.infoBox;
     config.$typeSelectedFlyby = this.$typeSelectedFlyby;
     config.callbackForm = this.callbackForm;
+    // this.infoBox.updateState('static');
     this.fsm.dispatch(settings, nameMethod, this, config);
   }
 

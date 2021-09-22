@@ -156,6 +156,9 @@
   &-show{
     visibility: visible;
   }
+  &-card.s3d-show {
+    visibility: visible;
+  }
 
   &-sort-active{
     .s3d-filter__arrow--svg{

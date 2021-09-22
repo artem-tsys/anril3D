@@ -34,6 +34,7 @@ class Svg {
       $.ajax(path)
         .done(svg => {
           $(svgWrap).append(svg.documentElement);
+          svgWrap.querySelector('svg').insertAdjacentHTML('beforeend', this.getGradient());
           this.showAvailableFlat();
           resolve();
         }).fail(error => {
@@ -83,6 +84,21 @@ class Svg {
       return;
     }
     $('.js-s3d-svg__point-group').css({ opacity: '0', display: 'none' });
+  }
+
+  getGradient() {
+    return `
+        <linearGradient xmlns="http://www.w3.org/2000/svg" id="gradient-fill" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#1f005c"/>
+            <stop offset="10%" stop-color="#5b0060"/>
+            <stop offset="28%" stop-color="#870160"/>
+            <stop offset="42%" stop-color="#ac255e"/>
+            <stop offset="57%" stop-color="#ca485c"/>
+            <stop offset="71%" stop-color="#e16b5c"/>
+            <stop offset="85%" stop-color="#f39060"/>
+            <stop offset="100%" stop-color="#ffb56b"/>
+        </linearGradient>
+    `;
   }
 }
 

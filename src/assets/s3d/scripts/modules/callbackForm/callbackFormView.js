@@ -129,6 +129,7 @@ export default class CallBackFormView extends EventEmitter {
     this.datePicker = jQuery('[name="wanted-date"]')
       .datetimepicker({
         minDate: new Date(),
+        lazyInit: true,
       });
       jQuery('[name="wanted-date"]')
       .datetimepicker('show');

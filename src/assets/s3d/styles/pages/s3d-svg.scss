@@ -39,9 +39,12 @@
       &.active-selected {
         fill: $color2;
         opacity: .7;
+        fill: url(#gradient-fill);
+        opacity: .25;
       }
       &.active-flat {
         fill: $color1;
+        fill: url(#gradient-fill);
         opacity: .7;
       }
     }

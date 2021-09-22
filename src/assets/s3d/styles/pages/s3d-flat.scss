@@ -371,6 +371,7 @@
       }
       polygon.u-svg-plan--active{
         fill: $color1;
+        fill: url(#gradient-fill);
       }
     }
     &__hover-gradient {

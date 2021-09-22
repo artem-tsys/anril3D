@@ -7,6 +7,7 @@
       .s3d-svg__house {
         &:hover:not(.active-flat) {
           fill: $color2;
+          fill: url(#gradient-fill);
           opacity: .5;
         }
       }

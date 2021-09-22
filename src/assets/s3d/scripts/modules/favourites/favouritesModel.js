@@ -214,17 +214,17 @@ class FavouritesModel extends EventEmitter {
       // this.animateFavouriteElement(document.querySelector('.s3d-mobile-only[data-type="favourites"]'), iconToAnimate, distance, reverse);
     } else {
       switch (currentScreen) {
-          case 'flyby':
-            distance = this.getBetweenDistance(document.querySelector('.js-s3d__favourites-icon'), iconToAnimate);
-            this.animateFavouriteElement(document.querySelector('.js-s3d__favourites-icon'), iconToAnimate, distance, reverse);
+          case 'flyby_1_outside':
+            distance = this.getBetweenDistance(document.querySelector('.s3d-ctr__favourites-icon'), iconToAnimate);
+            this.animateFavouriteElement(document.querySelector('.s3d-ctr__favourites-icon'), iconToAnimate, distance, reverse);
             break;
           case 'plannings':
-            distance = this.getBetweenDistance(document.querySelector('.s3d-ctr__favourites-icon'), iconToAnimate);
-            this.animateFavouriteElement(document.querySelector('.s3d-ctr__favourites-icon'), iconToAnimate, distance, reverse);
+            distance = this.getBetweenDistance(document.querySelector('.s3d-pl__favourites-icon'), iconToAnimate);
+            this.animateFavouriteElement(document.querySelector('.s3d-pl__favourites-icon'), iconToAnimate, distance, reverse);
             break;
           case 'flat':
-            distance = this.getBetweenDistance(document.querySelector('.s3d-ctr__favourites-icon'), iconToAnimate);
-            this.animateFavouriteElement(document.querySelector('.s3d-ctr__favourites-icon'), iconToAnimate, distance, reverse);
+            distance = this.getBetweenDistance(document.querySelector('.s3d-flat__favourites-icon'), iconToAnimate);
+            this.animateFavouriteElement(document.querySelector('.s3d-flat__favourites-icon'), iconToAnimate, distance, reverse);
             break;
           default:
             distance = this.getBetweenDistance(document.querySelector('.js-s3d__favourites-icon'), iconToAnimate);
