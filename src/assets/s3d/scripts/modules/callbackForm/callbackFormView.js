@@ -127,7 +127,11 @@ export default class CallBackFormView extends EventEmitter {
     const triggerForClearCalendar = document
       .querySelector('[data-trigger-for="wanted-date"]');
     this.datePicker = jQuery('[name="wanted-date"]')
-      .datetimepicker({});
+      .datetimepicker({
+        minDate: new Date(),
+      });
+      jQuery('[name="wanted-date"]')
+      .datetimepicker('show');
     jQuery('[name="date"]').on('change', false, () => {
       if (!triggerForClearCalendar.checked) {
         jQuery('[name="wanted-date"]').val('');

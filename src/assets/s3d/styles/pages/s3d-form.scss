@@ -272,12 +272,15 @@
 */
 .toast-wrapper {
     position: fixed;
-    right: 0;
-    bottom: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
     display: flex;
     flex-direction: column;
-    width: 320px;
+    width: 600px;
     z-index: 1500;
+    font-family: $default-font;
+    --in: ease-in-out;
   
   }
   
@@ -285,8 +288,8 @@
     position: relative;
     display: flex;
     width: 100%;
-    height: 103px;
-    background: #FFFFFF;
+    // height: 103px;
+    background:  #EFE9EA;
   
     .toast-logo-block {
       display: flex;
@@ -295,6 +298,7 @@
       min-width: 60px;
       width: 60px;
       height: 100%;
+      display: none;
     }
   
     .toast__logo {
@@ -309,7 +313,7 @@
     }
   
     .toast-content-block {
-      padding: 20px 50px 40px 20px;
+      padding: 60px;
       display: flex;
       flex-direction: column;
   
@@ -318,16 +322,18 @@
     .toast__title {
       margin-bottom: 15px;
       font-weight: 700;
-      font-size: 12px;
-      line-height: 12px;
+      font-size: 18px;
+        line-height: 28px;
       text-transform: uppercase;
     }
   
     .toast__text {
       font-weight: 500;
-      font-size: 12px;
-      line-height: 18px;
+      font-size: 14px;
+        line-height: 26px;
       color: #8E8E8E;
+      color: #000000;
+
     }
   
     .toast__colose-btn {
@@ -336,15 +342,15 @@
       display: flex;
       top: 17px;
       right: 20px;
-      width: 12px;
-      height: 12px;
+      width: 15px;
+      height: 15px;
       background-color: transparent;
       border: none;
       transition: transform 0.7s var(--in);
-  
+        cursor: pointer;
       @media screen and (min-width: 1024px)  {
         &:hover {
-          transform: rotate(90deg) scale(1.4);
+          transform: rotate(90deg);
           transition: transform 0.7s var(--in)
         }
       }
@@ -352,7 +358,7 @@
       svg {
         width: 100%;
         height: 100%;
-        fill: rgba(255, 255, 255, 1);
+        fill: #000000;
       }
     }
   }
@@ -366,6 +372,7 @@
   
     .toast__title {
       color: #E88E8E;
+      color: #000000
     }
   }
   
@@ -398,3 +405,51 @@
           opacity: 1;
       }
   }
+
+
+  /*CALENDAR*/
+.xdsoft_datetimepicker {
+    font-family: $default-font;
+    .xdsoft_datepicker {
+        width: auto;
+    }
+    .xdsoft_calendar table {
+        border-collapse: separate;
+        border-spacing: 12px;
+    }
+    .xdsoft_calendar th {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .xdsoft_timepicker .xdsoft_time_box {
+        height: 215px;
+    }
+    .xdsoft_label {
+        font-weight: 600;
+    }
+    .xdsoft_timepicker .xdsoft_time_box > div > div {
+        background-color: #fff;
+    }
+}
+  .xdsoft_datetimepicker .xdsoft_calendar td, .xdsoft_datetimepicker .xdsoft_calendar th {
+
+    border-radius: 10px;
+    border: none;
+    text-align: center;
+    padding: 0;
+    background-color: #fff;
+    &>div {
+        padding-right: 0;
+        padding: 15px;
+    }
+}
+
+.xdsoft_datetimepicker .xdsoft_datepicker {
+    // width: 300px;
+}
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_disabled {
+    background-color: #EFE9EA;
+    color: #DED2D4;
+}
+  /*CALENDAR END*/

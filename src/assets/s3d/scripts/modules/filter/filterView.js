@@ -61,7 +61,16 @@ class FilterView extends EventEmitter {
       const renderTypeDatasetValue = elForUpdate
         .getAttribute(datasetNameForRender);
       const typeOfUpdate = renderTypeDatasetValue.split('~')[1]; // mix or max
-      elForUpdate.textContent = data[typeOfUpdate];
+      switch (typeOfUpdate) {
+          case 'min':
+            elForUpdate.textContent = Math.floor(+data[typeOfUpdate]);
+            break;
+          case 'max':
+            elForUpdate.textContent = Math.ceil(+data[typeOfUpdate]);
+            break;
+          default:
+            break;
+      }
     });
     // console.log();
   }

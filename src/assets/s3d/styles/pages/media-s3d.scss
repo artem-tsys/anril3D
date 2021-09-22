@@ -8,6 +8,11 @@
         }
       }
     }
+    &-breadcrumbs {
+      &__link:hover {
+        color:#505050;
+      }
+    }
   }
   .close {
     &:hover{
@@ -21,6 +26,7 @@
       }
     }
   }
+  
 }
 
 @media screen and (max-width: 1680px) {

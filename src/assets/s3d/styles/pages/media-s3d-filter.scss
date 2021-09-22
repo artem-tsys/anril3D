@@ -70,6 +70,9 @@
       &__top {
         padding-bottom: 33px;
       }
+      &-wrap[data-type="plannings"] &__top {
+        max-height: calc(100vh - var(--s3d-margin-top) - 140px - 40px);
+      }
       &__title {
         font-size: 18px;
         line-height: 26px;

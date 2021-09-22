@@ -13,7 +13,8 @@
       &__select {
         &:hover:not( .active ):not( [ disabled ] ) {
           color: #FFFFFF;
-          background: $color1;
+          color: $color1;
+          // background: $color1;
         }
       }
       //&__toHome {
