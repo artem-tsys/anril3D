@@ -66,7 +66,7 @@ export default class MyToster {
 
     setTimeout(() => {
       this.removeItem(item);
-    }, 3000);
+    }, 300000);
   }
 
   listeners() {

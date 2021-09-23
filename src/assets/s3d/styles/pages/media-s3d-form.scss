@@ -49,5 +49,87 @@
             margin-bottom: 15px;
         }
     }
+    .toast-wrapper {
+        width: 100%;
+    }
+    .toast {
+        .toast-content-block {
+            padding: 25px;
+        }
+        &__title {
+            font-size: 15px;
+            line-height: 23px;
+        }
+    }
+    .toast .toast__title {
+        font-size: 15px;
+        line-height: 23px;
+    }
+    .toast .toast__text {
+        font-size: 12px;
+        line-height: 18px;
+    }
     
+}
+
+  /*CALENDAR*/
+
+@media screen and (max-width:600px) {
+    
+
+  .xdsoft_datetimepicker {
+    font-family: $default-font;
+    .xdsoft_datepicker {
+        width: auto;
+    }
+    .xdsoft_calendar table {
+        border-spacing: 5px;
+    }
+    .xdsoft_calendar th {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .xdsoft_timepicker .xdsoft_time_box {
+       
+        height: 178px;
+
+    }
+    .xdsoft_label {
+        font-weight: 600;
+    }
+    .xdsoft_timepicker .xdsoft_time_box > div > div {
+        background-color: #fff;
+        
+    }
+    .xdsoft_today {
+        div {
+            border-color: transparent !important;
+        }
+    }
+}
+  .xdsoft_datetimepicker .xdsoft_calendar td, .xdsoft_datetimepicker .xdsoft_calendar th {
+
+    &>div {
+        padding: 6px;
+
+    }
+    &:not(.xdsoft_disabled)>div {
+        border: 1px solid #AF989C;
+    }
+    
+}
+}
+
+@media screen and (max-width: 360px) {
+    .xdsoft_datetimepicker {
+        width: 320px;
+        left: 0 !important;
+    }
+    .xdsoft_datetimepicker .xdsoft_datepicker {
+        width: 240px;
+    }
+    .xdsoft_datetimepicker .xdsoft_timepicker {
+        width: 50px;
+    }
 }

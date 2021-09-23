@@ -27,6 +27,30 @@
         "without": "Без мебели",
         "rePlanning": "Без стен"
       }
+    },
+    "form": {
+      "title": "Our manager will contact you at a convenient time",
+      "time_now": "Call now",
+      "time_custom": "Choose time",
+      "time_convinient": "Specify a convenient time",
+      "necessarily": "* Fields are required",
+      "send": "Send",
+      "name": "Name*",
+      "your_name": "Your name*",
+      "your_telephone": "Your telephone*",
+      "tel": "Telephone*",
+      "m0": "January",
+      "m1": "February",
+      "m2": "March",
+      "m3": "April",
+      "m4": "May",
+      "m5": "June",
+      "m6": "July",
+      "m7": "August",
+      "m8": "September",
+      "m9": "October",
+      "m10": "November",
+      "m11": "December"
     }
   }
 }

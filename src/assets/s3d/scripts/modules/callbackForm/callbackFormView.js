@@ -11,8 +11,10 @@ export default class CallBackFormView extends EventEmitter {
     super();
     this.model = data;
     this.data = data;
-
     this.init();
+    this.langNSKey = 'form.';
+    this.langNS = i18next.t;
+    console.log(this.langNS);
   }
 
   render() {
@@ -43,31 +45,36 @@ export default class CallBackFormView extends EventEmitter {
     this.form.querySelector('form').insertAdjacentElement('afterbegin', el);
   }
 
+  _e(key) {
+    this.langNSKey = 'form.';
+    return i18next.t(`${this.langNSKey}${key}`);
+  }
+
   getView() {
     return `
     <div class="s3d-form__overlay">
         <form class="s3d-form">
-            <div class="s3d-form__title">Наш менеджер зв’яжеться з Вами у зручний час</div>
+            <div class="s3d-form__title">${this._e('title')}</div>
             <div class="s3d-form__input-group form-field-input" data-field-input data-field-name data-status="field--inactive">
               <input id="s3d-callback-name form-field__input" type="text" name="name" class="s3d-form__input" placeholder="Ім'я">
-              <label for="s3d-callback-name" class="s3d-form__input-message">Ім'я</label>
+              <label for="s3d-callback-name" class="s3d-form__input-message">${this._e('name')}</label>
               <div class="input-message" data-input-message></div>
               <div class="input-placeholder">Ваш телефон</div>
             </div>
             <div class="s3d-form__input-group form-field-input" data-field-input data-field-phone data-status="field--inactive">
-              <input class="s3d-form__input form-field__input" id="s3d-callback-tel" inputmode="tel" name="phone" placeholder="Телефон">
-              <label  class="s3d-form__input-message">Телефон</label>
+              <input class="s3d-form__input form-field__input" id="s3d-callback-tel" inputmode="tel" name="phone" placeholder="${this._e('tel')}">
+              <label  class="s3d-form__input-message">${this._e('tel')}</label>
               <div class="input-message" data-input-message></div>
               <div class="input-placeholder">Ваш телефон</div>
               
             </div>
             <div class="s3d-form__input-group s3d-form__checkbox-group">
                 <input id="s3d-callback-tel-now" name="date" type="radio" value="now" class="s3d-form__checkbox">
-                <label for="s3d-callback-tel-now" class="s3d-form__checkbox-label">Зателефонуйте зараз</label>
+                <label for="s3d-callback-tel-now" class="s3d-form__checkbox-label">${this._e('time_now')}</label>
             </div>
             <div class="s3d-form__input-group s3d-form__checkbox-group">
               <input id="s3d-callback-tel-date" data-trigger-for="wanted-date" value="individual" name="date" type="radio" class="s3d-form__checkbox">
-              <label for="s3d-callback-tel-date" class="s3d-form__checkbox-label">Вказати час</label>
+              <label for="s3d-callback-tel-date" class="s3d-form__checkbox-label">${this._e('time_custom')}</label>
               <div class="s3d-form__checkbox-input-wrap">
                 <input class="s3d-form__input s3d-form__checkbox-input" autocomplete="off" name="wanted-date" placeholder="Вказати зручний час">
                 <svg width="15" height="15" viewBox="0 0 15 15" fill="#AF989C" xmlns="http://www.w3.org/2000/svg">
@@ -78,9 +85,9 @@ export default class CallBackFormView extends EventEmitter {
             </div>
             <div class="s3d-form__submit-group">
               <div class="form-btn-wrap"></div>
-              <div class="s3d-form__subtitle">* Поля обов’язкові для заповнення</div>
+              <div class="s3d-form__subtitle">${this._e('necessarily')}</div>
               <button class="s3d-form__submit" data-btn-submit="data-btn-submit" type="submit">
-                Відправити
+              ${this._e('send')}
                 <div data-btn-submit-text></div>
               </button>
             </div>
@@ -126,12 +133,25 @@ export default class CallBackFormView extends EventEmitter {
     jQuery.datetimepicker.setLocale(langDetect());
     const triggerForClearCalendar = document
       .querySelector('[data-trigger-for="wanted-date"]');
+    // var fullmonth_array = jQuery.datepicker.regional[langDetect()].monthNames;
+    
     this.datePicker = jQuery('[name="wanted-date"]')
       .datetimepicker({
         minDate: new Date(),
         lazyInit: true,
+        format: 'M d/Y H:i',
+        minTime: '8:00',
+        maxTime: '17:00',
+        validateOnBlur: false,
+        closeOnDateSelect: true,
+        onChangeDateTime(ct, $i) {
+          const pickedDate = new Date(ct);
+          const fullMonthName = i18next.t(`form.m${ct.getMonth()}`);
+          const formatedValue = (`${fullMonthName}, ${pickedDate.getDate()} ${pickedDate.toLocaleTimeString()}`).trim();
+          $i.val(formatedValue);
+        },
       });
-      jQuery('[name="wanted-date"]')
+    jQuery('[name="wanted-date"]')
       .datetimepicker('show');
     jQuery('[name="date"]').on('change', false, () => {
       if (!triggerForClearCalendar.checked) {
