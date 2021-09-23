@@ -134,7 +134,6 @@ export default class CallBackFormView extends EventEmitter {
     const triggerForClearCalendar = document
       .querySelector('[data-trigger-for="wanted-date"]');
     // var fullmonth_array = jQuery.datepicker.regional[langDetect()].monthNames;
-    
     this.datePicker = jQuery('[name="wanted-date"]')
       .datetimepicker({
         minDate: new Date(),

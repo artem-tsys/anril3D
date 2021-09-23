@@ -124,10 +124,13 @@
           line-height: 14px;
         }
         &__list {
-          margin-top: 10px;
+        margin-top: 10px;
         }
         &--label {
           margin-left: 15px;
+        }
+        &--input {
+          --self-size: 14px;
         }
       }
       &__hide {

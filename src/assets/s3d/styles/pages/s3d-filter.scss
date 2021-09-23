@@ -199,9 +199,10 @@
         }
       }
       &--input {
+        --self-size: 16px;
         display: inline-block;
-        height: 16px;
-        width: 16px;
+        height: var(--self-size);
+        width: var(--self-size);
         border-radius: 0;
         margin: 0;
         cursor: pointer;
@@ -215,8 +216,8 @@
         position: absolute;
         left: 0;
         top: 0;
-        width: 16px;
-        height: 16px;
+        height: var(--self-size);
+        width: var(--self-size);
         border: 1px solid #505050;
         background: white;
         pointer-events: none;
@@ -230,8 +231,8 @@
         position: absolute;
         left: 25%;
         top: 0%;
-        width: 16px;
-        height: 16px;
+        height: var(--self-size);
+        width: var(--self-size);
         z-index: 5;
         transition: .15s ease-in-out;
         transform: scale(0);

@@ -9,6 +9,14 @@
       }
     }
     &-breadcrumbs {
+      &__current {
+        font-size: 10px;
+        line-height: 14px;
+      }
+      &__link { 
+        font-size: 10px;
+        line-height: 14px;
+      }
       &__link:hover {
         color:#505050;
       }
@@ -32,6 +40,17 @@
 @media screen and (max-width: 1680px) {
   .s3d-breadcrumbs {
     padding-top: 14px;
+    &__current {
+      font-size: 10px;
+      line-height: 14px;
+      &:before {
+        margin: 0px 15px;
+      }
+    }
+    &__link { 
+      font-size: 10px;
+      line-height: 14px;
+    }
   }
   .s3d__slideModule{
     .s3d__button-second {

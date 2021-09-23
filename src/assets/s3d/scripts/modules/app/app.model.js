@@ -97,7 +97,7 @@ class AppModel extends EventEmitter {
       history: this.history,
     });
     this.setDefaultConfigFlyby(this.config.flyby);
-    this.helper = new Helper();
+    // this.helper = new Helper();
     // window.localStorage.removeItem('info')
 
     this.deb = debounce(this.resize.bind(this), 200);
