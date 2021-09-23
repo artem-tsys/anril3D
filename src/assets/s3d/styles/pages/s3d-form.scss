@@ -291,7 +291,7 @@
     display: flex;
     width: 100%;
     // height: 103px;
-    background:  #EFE9EA;
+    background:  #fff;
   
     .toast-logo-block {
       display: flex;
@@ -426,7 +426,7 @@
     }
     .xdsoft_timepicker .xdsoft_time_box {
        
-    height: 300px;
+        height: 240px;
 
     }
     .xdsoft_label {
@@ -465,6 +465,7 @@
     &>div {
         padding-right: 0;
         padding: 15px;
+        padding: 8px 15px;
         border-radius: 10px;
     }
     &:not(.xdsoft_disabled)>div {

@@ -14,7 +14,6 @@ export default class CallBackFormView extends EventEmitter {
     this.init();
     this.langNSKey = 'form.';
     this.langNS = i18next.t;
-    console.log(this.langNS);
   }
 
   render() {

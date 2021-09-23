@@ -574,6 +574,8 @@ line-height: 26px;
       &__list {
         padding: 20px 0px;
         height: calc((30px * 2) + (2em * 2.5));
+        margin-right: -30px;
+        padding-right: 30px;
         overflow-x: hidden;
       }
       &__links {
