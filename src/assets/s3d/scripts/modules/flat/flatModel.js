@@ -23,6 +23,7 @@ class FlatModel extends EventEmitter {
     this.updateFsm = config.updateFsm;
     this.history = config.history;
     this.callbackForm = config.callbackForm;
+    this.instalmentForm = config.instalmentForm;
     this.createWrap();
     this.wrapper = $(`.js-s3d__wrapper__${this.type}`);
     this.imagesType = '';
@@ -132,6 +133,10 @@ class FlatModel extends EventEmitter {
   }
   openForm() {
     this.callbackForm.view.emit('openForm');
+  }
+
+  openInstallmentForm() {
+    this.instalmentForm.view.emit('openForm');
   }
 
   checkPlaning() {

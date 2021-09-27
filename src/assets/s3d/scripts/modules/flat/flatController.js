@@ -35,6 +35,9 @@ class FlatController {
     view.on('openForm', event => {
       this._model.openForm();
     });
+    view.on('openInstallmentForm', event => {
+      this._model.openInstallmentForm();
+    });
   }
 }
 

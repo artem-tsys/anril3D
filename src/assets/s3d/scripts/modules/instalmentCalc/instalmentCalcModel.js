@@ -4,4 +4,8 @@ export default class InstalmentCalcModel extends EventEmitter {
   constructor(model, elements) {
     super();
   }
+
+  openHandler() {
+    this.emit('openForm');
+  }
 }

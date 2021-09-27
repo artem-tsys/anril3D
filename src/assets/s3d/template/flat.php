@@ -169,7 +169,7 @@ echo json_encode('<div class="s3d-flat__wrap">
               <button class="s3d-flat__callback s3d-flat__callback-2 js-callback-form" data-parrent-node-popup>
                 связаться с менеджером
               </button>
-              <button class="s3d-flat__callback s3d-flat__callback-1 js-callback-form" data-parrent-node-popup>Розрахувати розстрочку</button>
+              <button class="s3d-flat__callback s3d-flat__callback-1 js-installment-form" data-parrent-node-popup>Розрахувати розстрочку</button>
           </div>
         </div>
 	

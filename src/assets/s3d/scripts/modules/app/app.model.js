@@ -19,6 +19,7 @@ import FavouritesModel from '../favourites/favouritesModel';
 import FavouritesController from '../favourites/favouritesController';
 import FavouritesView from '../favourites/favouritesView';
 import CallbackFormController from '../callbackForm/callbackFormController';
+import InstalmentCalcController from '../instalmentCalc/instalmentCalcController';
 class AppModel extends EventEmitter {
   constructor(data) {
     super();
@@ -48,6 +49,7 @@ class AppModel extends EventEmitter {
     this.flatList = {};
     this.subject = new BehaviorSubject(this.flatList);
     this.callbackForm = new CallbackFormController();
+    this.instalmentForm = new InstalmentCalcController();
     this.fsmConfig = fsmConfig();
     this.fsm = fsm();
   }
@@ -467,6 +469,7 @@ class AppModel extends EventEmitter {
     config.infoBox = this.infoBox;
     config.$typeSelectedFlyby = this.$typeSelectedFlyby;
     config.callbackForm = this.callbackForm;
+    config.instalmentForm = this.instalmentForm;
     // this.infoBox.updateState('static');
     this.fsm.dispatch(settings, nameMethod, this, config);
   }
