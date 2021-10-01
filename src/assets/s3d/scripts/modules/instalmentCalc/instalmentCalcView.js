@@ -15,7 +15,14 @@ export default class InstalmentCalcView extends EventEmitter {
       this.render(data);
     });
     this.model.on('updateSlides', (data) => {
-      console.log('DATA FROM INSTALLMODEL');
+      console.log(data, 'DATA FROM INSTALLMODEL');
+
+      Object.entries(data).forEach(dataItem => {
+        const [name, value] = dataItem;
+        const $el = document.querySelector(`[data-${name}]`);
+        $el.textContent = this.numberWithCommas(value);
+        console.log();
+      })
     });
     this.config = {
       termin: 10,
@@ -34,6 +41,10 @@ export default class InstalmentCalcView extends EventEmitter {
 
   init() {
     // this.render();
+  }
+
+  numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   }
 
   render(flatData) {
@@ -65,7 +76,7 @@ export default class InstalmentCalcView extends EventEmitter {
       .forEach(range => {
         const name = range.getAttribute('name');
         $(range).ionRangeSlider({
-          min: 0,
+          min: 1,
           max: 100,
           from: 100,
           to: 0,
@@ -83,20 +94,24 @@ export default class InstalmentCalcView extends EventEmitter {
     return `
       <div class="form-instalment-layout">
       <form action="" class="form-instalment">
-        <div class="form-instalment__title">Калькулятор розстрочки</div>
+        <div class="form-instalment__title">Калькулятор розтермінування</div>
         <div>
           <div class="form-instalment__subtitle">Загальна вартість</div>
           <div class="fw-600" data-currency="₴">${flatData.price}</div>
         </div>
             <div class="form-instalment__delimiter"></div>
-            <div class="tab">Перший внесок</div>
-            <div  class="h6" data-first-amount>326,919 грн.</div>
-            <input type="text" class="js-range-slider" name="amount" data-for="first-amount" value="" />
-            <div class="tab">Термі кредиту, місяців</div>
-            <div  class="h6" data-termin>60 міс</div>
-            <input type="text" class="js-range-slider" data-for="termin" name="termin" value="" />
+            <div class="form-instalment__range-group">
+              <div class="tab">Перший внесок, ₴</div>
+              <div  class="h6" data-amount>326,919 грн.</div>
+              <input type="text" class="js-range-slider" name="amount" data-for="amount" value="" />
+            </div>
+            <div class="form-instalment__range-group">
+              <div class="tab">Період розтермінування, місяців</div>
+              <div  class="h6" data-termin>60 міс</div>
+              <input type="text" class="js-range-slider" data-for="termin" name="termin" value="" />
+            </div>
             <div class="tab">Щомісячний платіж</div>
-            <div class="h4">12,714</div>
+            <div class="h4" data-per_month>12,714</div>
             <div class="s3d-form__input-group form-field-input" data-field-input data-field-phone data-status="field--inactive">
               <input class="s3d-form__input form-field__input"  name="name" placeholder="Ім'я">
               <label  class="s3d-form__input-message">Ім'я</label>

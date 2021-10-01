@@ -14,15 +14,26 @@ export default class InstalmentCalcModel extends EventEmitter {
     this.emit('renderInstallmentForm', this.flat);
   }
 
+
   updateSlides(data) {
-    const { price } = +this.flat;
-    console.log(price);
+    let { price } = this.flat;
+    price = +price.replace(/ /g, '');
     const returnData = {};
     Object.entries(data).forEach(ranges => {
       const [name, dataObject] = ranges;
-
-      console.log(dataObject);
-    })
-    this.emit('updateSlides');
+      switch (name) {
+          case 'amount':
+            returnData[name] = (price / 100 * dataObject.old_from).toFixed(0);
+            break;
+          case 'termin':
+            break;
+          default:
+            returnData[name] = dataObject.old_from;
+            break;
+      }
+    });
+    returnData.per_month = ((+price - returnData.amount)
+      / +data.termin.old_from).toFixed(0) + ' ₴';
+    this.emit('updateSlides', returnData);
   }
 }
