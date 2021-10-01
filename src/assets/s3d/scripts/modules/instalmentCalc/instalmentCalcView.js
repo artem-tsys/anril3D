@@ -1,14 +1,27 @@
 import EventEmitter from '../eventEmitter/EventEmitter';
 import gsap from 'gsap';
+import $ from "jquery";
+import ionRangeSlider from 'ion-rangeslider';
 export default class InstalmentCalcView extends EventEmitter {
   constructor(model, elements) {
     super();
     this.model = model;
     this.init();
     this.model.on('openForm', () => {
-      console.log('INSTALLMENT');
       this.open();
-    })
+    });
+    this.model.on('renderInstallmentForm', (data) => {
+      console.log(data);
+      this.render(data);
+    });
+    this.model.on('updateSlides', (data) => {
+      console.log('DATA FROM INSTALLMODEL');
+    });
+    this.config = {
+      termin: 10,
+      amount: 10,
+    };
+    this.ranges = {};
   }
 
   close() {
@@ -20,13 +33,16 @@ export default class InstalmentCalcView extends EventEmitter {
   }
 
   init() {
-    this.render();
+    // this.render();
   }
 
-  render() {
-    document.body.insertAdjacentHTML('beforeend', this.getLayout());
+  render(flatData) {
+    document.querySelector('.s3d-flat__wrap')
+      .insertAdjacentHTML('beforeend', this.getLayout(flatData));
     this.form = document.querySelector('.form-instalment-layout');
     this.addCloseButton();
+    this.addRanges();
+    console.log(this);
   }
 
   addCloseButton() {
@@ -40,25 +56,61 @@ export default class InstalmentCalcView extends EventEmitter {
     el.addEventListener('click', () => {
       this.emit('closeForm');
     });
-    this.form.querySelector('form').insertAdjacentElement('afterbegin', el);
+    // this.form.querySelector('form').insertAdjacentElement('afterbegin', el);
   }
 
-  getLayout() {
+  addRanges() {
+    const self = this;
+    document.querySelectorAll('.form-instalment-layout .js-range-slider')
+      .forEach(range => {
+        const name = range.getAttribute('name');
+        $(range).ionRangeSlider({
+          min: 0,
+          max: 100,
+          from: 100,
+          to: 0,
+          onFinish: () => {
+            self.emit('updateSlides', this.ranges);
+          },
+        });
+        this
+          .ranges[name] = $(range).data('ionRangeSlider');
+        this.ranges[name].name = name;
+      });
+  }
+
+  getLayout(flatData) {
     return `
       <div class="form-instalment-layout">
       <form action="" class="form-instalment">
         <div class="form-instalment__title">Калькулятор розстрочки</div>
-        <div class="form-instalment__subtitle">Загальна вартість
-            <div class="fw-600" data-currency="₴">1089730</div>
+        <div>
+          <div class="form-instalment__subtitle">Загальна вартість</div>
+          <div class="fw-600" data-currency="₴">${flatData.price}</div>
+        </div>
             <div class="form-instalment__delimiter"></div>
-            <div class="form-instalment__input-group">
-                <input type="text">
+            <div class="tab">Перший внесок</div>
+            <div  class="h6" data-first-amount>326,919 грн.</div>
+            <input type="text" class="js-range-slider" name="amount" data-for="first-amount" value="" />
+            <div class="tab">Термі кредиту, місяців</div>
+            <div  class="h6" data-termin>60 міс</div>
+            <input type="text" class="js-range-slider" data-for="termin" name="termin" value="" />
+            <div class="tab">Щомісячний платіж</div>
+            <div class="h4">12,714</div>
+            <div class="s3d-form__input-group form-field-input" data-field-input data-field-phone data-status="field--inactive">
+              <input class="s3d-form__input form-field__input"  name="name" placeholder="Ім'я">
+              <label  class="s3d-form__input-message">Ім'я</label>
+              <div class="input-message" data-input-message></div>
+              <div class="input-placeholder">Ім'я</div>
             </div>
-            <div class="form-instalment__input-group">
-                <input type="text">
+            <div class="s3d-form__input-group form-field-input" data-field-input data-field-phone data-status="field--inactive">
+              <input class="s3d-form__input form-field__input" id="s3d-callback-tel" inputmode="tel" name="phone" placeholder="Телефон">
+              <label  class="s3d-form__input-message">Телефон</label>
+              <div class="input-message" data-input-message></div>
+              <div class="input-placeholder">Ваш телефон</div>
             </div>
-            <button type="submit">Замовити розстрочку</button>
-            <button type="button">Завантажити PDF з графіком виплат</button>
+            <button class="form-instalment__submit" type="submit">Замовити розстрочку</button>
+            <button class="form-instalment__pdf" type="button">Завантажити PDF з графіком виплат</button>
           </div>
       </form>
     </div>

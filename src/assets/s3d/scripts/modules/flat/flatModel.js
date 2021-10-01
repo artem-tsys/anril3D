@@ -6,7 +6,7 @@ import {
   addBlur, unActive, preloader, updateFlatFavourite, compass, debounce,
 } from '../general/General';
 import asyncRequest from '../async/async';
-
+import InstalmentCalcController from '../instalmentCalc/instalmentCalcController';
 class FlatModel extends EventEmitter {
   constructor(config) {
     super();
@@ -23,7 +23,7 @@ class FlatModel extends EventEmitter {
     this.updateFsm = config.updateFsm;
     this.history = config.history;
     this.callbackForm = config.callbackForm;
-    this.instalmentForm = config.instalmentForm;
+    this.instalmentForm = new InstalmentCalcController(this.getFlat(this.activeFlat));
     this.createWrap();
     this.wrapper = $(`.js-s3d__wrapper__${this.type}`);
     this.imagesType = '';
@@ -137,6 +137,11 @@ class FlatModel extends EventEmitter {
 
   openInstallmentForm() {
     this.instalmentForm.view.emit('openForm');
+  }
+
+  renderInstallmentForm() {
+    console.log('model renderInstallmentForm');
+    this.instalmentForm.view.emit('renderInstallmentForm', 'dfsbhdtjntdjmtrjk');
   }
 
   checkPlaning() {

@@ -222,7 +222,7 @@
         background: white;
         pointer-events: none;
         transition: .15s ease-in-out;
-      }
+    }
       &--input:checked:after {
         border-color: $color1;
       }
@@ -231,8 +231,8 @@
         position: absolute;
         left: 25%;
         top: 0%;
-        height: var(--self-size);
-        width: var(--self-size);
+        height: calc(var(--self-size) / 13 * 15);
+        width:  calc(var(--self-size)/ 13 * 15);
         z-index: 5;
         transition: .15s ease-in-out;
         transform: scale(0);

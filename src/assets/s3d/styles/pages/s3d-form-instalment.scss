@@ -1,3 +1,121 @@
-.form-installment-layout {
-    @extend .s3d-form__overlay;
+.form-instalment-layout {
+    width: 100%;
+    background: white;
+    margin-top: 50px;
+    padding: 50px;
+    --padding: 40px;
+    padding: var(--padding) var(--padding) var(--padding) calc(var(--padding) + 275px);
+}
+.form-instalment {
+    color: #1A191D;
+    &__title {
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 34px;
+        @media screen and (max-width: 1280px){
+            font-size: 24px;
+            line-height: 30px;
+        }           
+        @media screen and (max-width: 991px){
+            font-size: 22px;
+            line-height: 28px;
+        }
+        @media screen and (max-width: 575px){
+            font-size: 20px;
+            line-height: 26px;
+        }   
+    }
+    &__delimiter {
+        height: 1px;
+        width: 100%;
+        background-color: #AF989C;
+        margin-top: 40px;
+        margin-bottom: 35px;
+    }
+    &__subtitle {
+        font-size: 14px;
+        line-height: 26px;
+    }
+    &__submit {
+        @extend .s3d-flat__callback;
+        width: max-content;
+        padding-left: 60px;
+        padding-right: 60px;
+        &:after {
+            display: none;
+        }
+    }
+    .fw-600 {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 26px;
+        &:after {
+            content: attr(data-currency);
+            margin-left: 0.5ch;
+        }
+    }
+    &__pdf {
+        @extend .s3d-flat__transparent-button;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        width: max-content;
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+
+    .h4 {
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 42px;
+        color: #1A191D;
+        @media screen and (max-width: 1280px){
+            font-size: 26px;
+            line-height: 32px;
+        }           
+        @media screen and (max-width: 991px){
+            font-size: 26px;
+            line-height: 32px;
+        }
+        @media screen and (max-width: 575px){
+            font-size: 24px;
+            line-height: 30px;
+        }    
+    }
+    .h6 {
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 32px;
+        color: #25282B;
+        @media screen and (max-width: 1280px){
+            font-size: 18px;
+            line-height: 26px;
+        }           
+        @media screen and (max-width: 991px){
+            font-size: 16px;
+            line-height: 24px;
+        }
+        @media screen and (max-width: 575px){
+            font-size: 15px;
+            line-height: 23px;
+        }     
+    }
+    .tab  {
+        font-weight: 500;
+font-size: 14px;
+line-height: 18px;
+        color: #25282B;
+        @media screen and (max-width: 1280px){
+            font-size: 12px;
+line-height: 18px;
+        }           
+        @media screen and (max-width: 991px){
+            font-size: 12px;
+line-height: 18px;
+        }
+        @media screen and (max-width: 575px){
+            font-size: 12px;
+            line-height: 18px;
+        }     
+    }
 }

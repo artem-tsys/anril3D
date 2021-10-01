@@ -141,7 +141,7 @@ export default class CallBackFormView extends EventEmitter {
         minTime: '8:00',
         maxTime: '17:00',
         validateOnBlur: false,
-        closeOnDateSelect: true,
+        closeOnDateSelect: false,
         onChangeDateTime(ct, $i) {
           const pickedDate = new Date(ct);
           const fullMonthName = i18next.t(`form.m${ct.getMonth()}`);

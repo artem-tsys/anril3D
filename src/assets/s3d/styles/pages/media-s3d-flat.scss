@@ -519,6 +519,9 @@
       width: 100%;
       height: auto;
       max-height: 100%;
+      height: auto;
+    max-height: none;
+    overflow: initial;
       &__wrap {
         // overflow-y: auto;
         padding-left: 10px;

@@ -67,8 +67,14 @@ class FlatView extends EventEmitter {
       this.emit('changeRadioChecked', el);
     });
 
-    model.on('setHtml', html => { this.setHtml(html); });
-    model.on('updateFlatData', data => { this.updateFlatData(data); });
+    model.on('setHtml', html => { 
+      this.setHtml(html);
+      this.emit('renderInstallmentForm');
+    });
+    model.on('updateFlatData', data => { 
+      this.updateFlatData(data);
+      console.log(data, 'FLAT DATA');
+    });
     model.on('removeElement', tag => { this.removeElement(tag); });
     model.on('changeClassShow', elem => { this.changeClassShow(elem); });
     model.on('updateImg', data => { this.setNewImage(data); });
