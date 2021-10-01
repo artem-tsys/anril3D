@@ -41,6 +41,9 @@ class FlatController {
     view.on('renderInstallmentForm', event => {
       this._model.renderInstallmentForm();
     });
+    view.on('updateInstallmentActiveFlat', event => {
+      this._model.updateInstallmentActiveFlat(data);
+    });
   }
 }
 

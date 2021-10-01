@@ -8,14 +8,29 @@
 }
 .form-instalment {
     color: #1A191D;
-    --group-margin: 93px;
+    --group-margin: 50px;
     display: flex;
     flex-wrap: wrap;
     &__range-group {
         width: 23%;
         display: flex;
         flex-direction: column;
-        margin-left: var(--group-margin);
+        margin-right: var(--group-margin);
+    }
+    &__section {
+        width: 23%;
+        margin-right: var(--group-margin);
+    }
+    &__small-group {
+        width: auto;
+        margin-left: auto;
+    }
+    &__top-group {
+        margin-left: auto;
+        display: flex;
+        :nth-child(n+2) {
+            margin-left: 10px;
+        }
     }
     &__title {
         font-weight: 600;
@@ -132,5 +147,9 @@ line-height: 18px;
     }
     .irs-handle {
         cursor: pointer;
+    }
+    .fdc {
+        display: flex;
+        flex-direction: column;
     }
 }

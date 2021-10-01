@@ -111,6 +111,8 @@ class FlatView extends EventEmitter {
     const {
       flat, id,
     } = data;
+    this.emit('updateInstallmentActiveFlat', data);
+    console.log('NEW FLAT TEMPLATE');
     const wrap = $('.js-s3d__wrapper__flat');
     const pdfContainer = wrap.find('.js-s3d__create-pdf')[0];
     wrap.find('.js-s3d-flat__image')[0].src = flat.img;

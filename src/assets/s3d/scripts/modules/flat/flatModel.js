@@ -211,6 +211,10 @@ class FlatModel extends EventEmitter {
     }
   }
 
+  updateInstallmentActiveFlat(data) {
+    this.instalmentForm.view.emit('updateInstallmentActiveFlat', data);
+  }
+
   updateMiniInfo(event) {
     if (event.currentTarget && event.currentTarget.hasAttribute('data-id')) {
       this.emit('updateDataFlats', this.getFlat(+event.currentTarget.dataset.id));

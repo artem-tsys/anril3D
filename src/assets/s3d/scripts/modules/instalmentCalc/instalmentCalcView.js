@@ -2,6 +2,12 @@ import EventEmitter from '../eventEmitter/EventEmitter';
 import gsap from 'gsap';
 import $ from "jquery";
 import ionRangeSlider from 'ion-rangeslider';
+import * as yup from 'yup';
+import i18next from 'i18next';
+import FormMonster from '../form/form';
+import SexyInput from '../form/input/input';
+import { langDetect } from '../form/helpers/helpers';
+
 export default class InstalmentCalcView extends EventEmitter {
   constructor(model, elements) {
     super();
@@ -11,19 +17,22 @@ export default class InstalmentCalcView extends EventEmitter {
       this.open();
     });
     this.model.on('renderInstallmentForm', (data) => {
-      console.log(data);
       this.render(data);
     });
     this.model.on('updateSlides', (data) => {
-      console.log(data, 'DATA FROM INSTALLMODEL');
-
       Object.entries(data).forEach(dataItem => {
         const [name, value] = dataItem;
         const $el = document.querySelector(`[data-${name}]`);
         $el.textContent = this.numberWithCommas(value);
-        console.log();
-      })
+      });
     });
+    this.model.on('initRanges', (data) => {
+      this.addRanges(data);
+    });
+
+    this.model.on('updateInstallmentActiveFlat', (data) => {
+    });
+
     this.config = {
       termin: 10,
       amount: 10,
@@ -52,8 +61,8 @@ export default class InstalmentCalcView extends EventEmitter {
       .insertAdjacentHTML('beforeend', this.getLayout(flatData));
     this.form = document.querySelector('.form-instalment-layout');
     this.addCloseButton();
-    this.addRanges();
-    console.log(this);
+    this.emit('initRanges');
+    this.initHandlers();
   }
 
   addCloseButton() {
@@ -70,24 +79,40 @@ export default class InstalmentCalcView extends EventEmitter {
     // this.form.querySelector('form').insertAdjacentElement('afterbegin', el);
   }
 
-  addRanges() {
+  addRanges(data) {
     const self = this;
-    document.querySelectorAll('.form-instalment-layout .js-range-slider')
-      .forEach(range => {
-        const name = range.getAttribute('name');
-        $(range).ionRangeSlider({
-          min: 1,
-          max: 100,
-          from: 100,
-          to: 0,
-          onFinish: () => {
-            self.emit('updateSlides', this.ranges);
-          },
-        });
-        this
-          .ranges[name] = $(range).data('ionRangeSlider');
-        this.ranges[name].name = name;
+    Object.entries(data).forEach(rangeArg => {
+      const [name, value] = rangeArg;
+      const range = document.querySelector(`.js-range-slider[name="${name}"]`);
+      $(range).ionRangeSlider({
+        min: value.min,
+        max: value.max,
+        from: value.start,
+        to: 0,
+        onChange: () => {
+          self.emit('updateSlides', this.ranges);
+        },
       });
+      this
+        .ranges[name] = $(range).data('ionRangeSlider');
+      this.ranges[name].name = name;
+    });
+    // document.querySelectorAll('.form-instalment-layout .js-range-slider')
+    //   .forEach(range => {
+    //     const name = range.getAttribute('name');
+    //     $(range).ionRangeSlider({
+    //       min: 1,
+    //       max: 100,
+    //       from: 100,
+    //       to: 0,
+    //       onFinish: () => {
+    //         self.emit('updateSlides', this.ranges);
+    //       },
+    //     });
+    //     this
+    //       .ranges[name] = $(range).data('ionRangeSlider');
+    //     this.ranges[name].name = name;
+    //   });
   }
 
   getLayout(flatData) {
@@ -95,40 +120,92 @@ export default class InstalmentCalcView extends EventEmitter {
       <div class="form-instalment-layout">
       <form action="" class="form-instalment">
         <div class="form-instalment__title">Калькулятор розтермінування</div>
-        <div>
+        <div class="form-instalment__top-group">
           <div class="form-instalment__subtitle">Загальна вартість</div>
           <div class="fw-600" data-currency="₴">${flatData.price}</div>
         </div>
-            <div class="form-instalment__delimiter"></div>
-            <div class="form-instalment__range-group">
-              <div class="tab">Перший внесок, ₴</div>
-              <div  class="h6" data-amount>326,919 грн.</div>
-              <input type="text" class="js-range-slider" name="amount" data-for="amount" value="" />
-            </div>
-            <div class="form-instalment__range-group">
-              <div class="tab">Період розтермінування, місяців</div>
-              <div  class="h6" data-termin>60 міс</div>
-              <input type="text" class="js-range-slider" data-for="termin" name="termin" value="" />
-            </div>
+          <div class="form-instalment__delimiter"></div>
+          <div class="form-instalment__range-group">
+            <div class="tab">Перший внесок, ₴</div>
+            <div  class="h6" data-amount>326,919 грн.</div>
+            <input type="text" class="js-range-slider" name="amount" data-for="amount" value="" />
+          </div>
+          <div class="form-instalment__range-group">
+            <div class="tab">Період розтермінування, місяців</div>
+            <div  class="h6" data-termin>60 міс</div>
+            <input type="text" class="js-range-slider" data-for="termin" name="termin" value="" />
+          </div>
+          <div class="fdc form-instalment__section">
+          <div class="s3d-form__input-group form-field-input" data-field-input data-field-name data-status="field--inactive">
+          <input class="s3d-form__input form-field__input"  name="name" placeholder="Ім'я">
+          <label  class="s3d-form__input-message">Ім'я</label>
+          <div class="input-message" data-input-message></div>
+          <div class="input-placeholder">Ім'я</div>
+          </div>
+          <div class="s3d-form__input-group form-field-input" data-field-input data-field-phone data-status="field--inactive">
+          <input class="s3d-form__input form-field__input" id="s3d-callback-tel" inputmode="tel" name="phone" placeholder="Телефон">
+          <label  class="s3d-form__input-message">Телефон</label>
+          <div class="input-message" data-input-message></div>
+          <div class="input-placeholder">Ваш телефон</div>
+          </div>
+          </div>
+          <div class="fdc form-instalment__small-group">
             <div class="tab">Щомісячний платіж</div>
             <div class="h4" data-per_month>12,714</div>
-            <div class="s3d-form__input-group form-field-input" data-field-input data-field-phone data-status="field--inactive">
-              <input class="s3d-form__input form-field__input"  name="name" placeholder="Ім'я">
-              <label  class="s3d-form__input-message">Ім'я</label>
-              <div class="input-message" data-input-message></div>
-              <div class="input-placeholder">Ім'я</div>
-            </div>
-            <div class="s3d-form__input-group form-field-input" data-field-input data-field-phone data-status="field--inactive">
-              <input class="s3d-form__input form-field__input" id="s3d-callback-tel" inputmode="tel" name="phone" placeholder="Телефон">
-              <label  class="s3d-form__input-message">Телефон</label>
-              <div class="input-message" data-input-message></div>
-              <div class="input-placeholder">Ваш телефон</div>
-            </div>
-            <button class="form-instalment__submit" type="submit">Замовити розстрочку</button>
-            <button class="form-instalment__pdf" type="button">Завантажити PDF з графіком виплат</button>
+          </div>
+          <button class="form-instalment__submit" data-btn-submit type="submit">
+            Замовити розстрочку
+            <div data-btn-submit-text></div>
+          </button>
+          <button class="form-instalment__pdf" type="button">
+            Завантажити PDF з графіком виплат
+            
+          </button>
           </div>
       </form>
     </div>
     `;
+  }
+
+  initHandlers() {
+    const self = this;
+    // eslint-disable-next-line no-new
+    this.handler = new FormMonster({
+      /* eslint-enable */
+      succesEventName: 'succesSend',
+      elements: {
+        $form: self.form.querySelector('form'),
+        showSuccessMessage: true,
+        $btnSubmit: self.form.querySelector('[data-btn-submit]'),
+        fields: {
+          name: {
+            inputWrapper: new SexyInput({
+              animation: 'none',
+              $field: self.form.querySelector('[data-field-name]'),
+            }),
+            rule: yup.string().required(),
+            defaultMessage: i18next.t('name'),
+            valid: false,
+            error: [],
+          },
+          phone: {
+            inputWrapper: new SexyInput({
+              animation: 'none',
+              $field: self.form.querySelector('[data-field-phone]'),
+              typeInput: 'phone',
+            }),
+            rule: yup
+              .string()
+              .required(i18next.t('required'))
+              .min(17, i18next.t('field_too_short', { cnt: 17 - 5 })),
+
+            defaultMessage: i18next.t('phone'),
+            valid: false,
+            error: [],
+          },
+        },
+
+      },
+    });
   }
 }

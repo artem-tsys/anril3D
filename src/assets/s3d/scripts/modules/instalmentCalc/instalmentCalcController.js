@@ -13,8 +13,14 @@ export default class InstalmentCalcController extends EventEmitter {
     this.view.on('renderInstallmentForm', (data) => {
       this.model.renderInstallmentForm(data);
     });
+    this.view.on('updateInstallmentActiveFlat', (data) => {
+      this.model.updateInstallmentActiveFlat(data);
+    });
     this.view.on('updateSlides', (data) => {
       this.model.updateSlides(data);
+    });
+    this.view.on('initRanges', (data) => {
+      this.model.initRanges(data);
     });
   }
 }
