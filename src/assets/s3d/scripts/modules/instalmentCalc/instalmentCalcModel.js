@@ -5,8 +5,8 @@ export default class InstalmentCalcModel extends EventEmitter {
     super();
     this.flat = model;
     this.config = {
-      amount: { max: 100, min: 1, start: 1 },
-      termin: { max: 60, min: 0, start: 60 },
+      amount: { max: 100, min: 0, start: 1 },
+      termin: { max: 60, min: 1, start: 60 },
     };
   }
 
@@ -35,17 +35,17 @@ export default class InstalmentCalcModel extends EventEmitter {
       const [name, dataObject] = ranges;
       switch (name) {
           case 'amount':
-            returnData[name] = (price / 100 * dataObject.old_from).toFixed(0);
+            returnData[name] = (price / 100 * dataObject.old_from).toFixed(0) + ' ₴';
             break;
           case 'termin':
-            returnData[name] = dataObject.old_from;
+            returnData[name] = dataObject.old_from + ' міс.';
             break;
           default:
             returnData[name] = dataObject.old_from;
             break;
       }
     });
-    returnData.per_month = ((+price - returnData.amount)
+    returnData.per_month = ((+price - +returnData.amount.replace(/\D/g, ''))
       / +data.termin.old_from).toFixed(0) + ' ₴';
     this.emit('updateSlides', returnData);
   }

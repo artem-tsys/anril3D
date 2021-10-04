@@ -95,6 +95,11 @@ export default class InstalmentCalcView extends EventEmitter {
       });
       this
         .ranges[name] = $(range).data('ionRangeSlider');
+
+      this
+        .ranges[name].update({
+          from: 0,
+        });
       this.ranges[name].name = name;
     });
     // document.querySelectorAll('.form-instalment-layout .js-range-slider')
@@ -126,13 +131,17 @@ export default class InstalmentCalcView extends EventEmitter {
         </div>
           <div class="form-instalment__delimiter"></div>
           <div class="form-instalment__range-group">
-            <div class="tab">Перший внесок, ₴</div>
-            <div  class="h6" data-amount>326,919 грн.</div>
+            <div class="form-instalment__range-group-top">
+              <div class="tab">Перший внесок, ₴</div>
+              <div  class="h6" data-amount>326,919 грн.</div>
+            </div>
             <input type="text" class="js-range-slider" name="amount" data-for="amount" value="" />
           </div>
           <div class="form-instalment__range-group">
-            <div class="tab">Період розтермінування, місяців</div>
-            <div  class="h6" data-termin>60 міс</div>
+            <div class="form-instalment__range-group-top">
+              <div class="tab">Період розтермінування, місяців</div>
+              <div  class="h6" data-termin>60 міс</div>
+            </div>
             <input type="text" class="js-range-slider" data-for="termin" name="termin" value="" />
           </div>
           <div class="fdc form-instalment__section">
@@ -151,15 +160,14 @@ export default class InstalmentCalcView extends EventEmitter {
           </div>
           <div class="fdc form-instalment__small-group">
             <div class="tab">Щомісячний платіж</div>
-            <div class="h4" data-per_month>12,714</div>
+            <div class="h4" data-per_month data-currency="₴">12,714</div>
           </div>
-          <button class="form-instalment__submit" data-btn-submit type="submit">
-            Замовити розстрочку
-            <div data-btn-submit-text></div>
-          </button>
           <button class="form-instalment__pdf" type="button">
-            Завантажити PDF з графіком виплат
-            
+          Завантажити PDF з графіком виплат
+          </button>
+          <button class="form-instalment__submit" data-btn-submit type="submit">
+          Замовити розстрочку
+          <div data-btn-submit-text></div>
           </button>
           </div>
       </form>

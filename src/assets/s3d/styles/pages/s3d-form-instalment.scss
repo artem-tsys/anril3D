@@ -16,6 +16,12 @@
         display: flex;
         flex-direction: column;
         margin-right: var(--group-margin);
+        &-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 27px;
+        }
     }
     &__section {
         width: 23%;
@@ -60,15 +66,54 @@
         font-size: 14px;
         line-height: 26px;
     }
+    .input-message {
+        position: absolute;
+        font-size: 10px;
+        line-height: 140%;
+        border: none;
+        padding-bottom: 0;
+        left: 0;
+        top: 100%;
+        width: 100%;
+        padding-top: 5px;
+        color: #F04923;
+        &:empty {
+            padding: 0;
+        }
+    }
+
+    [data-status="field--error"] input {
+        border-color: #F04923;
+    }
+    [data-status="field--success"] input {
+        border-color: green;
+    }
+    [data-status="field--success"] .input-message {
+        color: green;
+    }
+    .input-placeholder {
+        display: none;
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        font-size: 10px;
+        line-height: 14px;
+        color: #AFAFAF;
+        opacity: 0;
+        transition: .3s ease-in-out;
+
+    }
     &__submit {
         @extend .s3d-flat__callback;
         width: max-content;
         padding-left: 60px;
         padding-right: 60px;
+        // margin-left: auto;
         &:after {
             display: none;
         }
     }
+    
     .fw-600 {
         font-weight: 600;
         font-size: 18px;
@@ -86,6 +131,8 @@
         width: max-content;
         padding-right: 40px;
         padding-left: 40px;
+        order: initial;
+        margin-left: auto;
     }
 
     .h4 {
@@ -126,16 +173,16 @@
     }
     .tab  {
         font-weight: 500;
-font-size: 14px;
-line-height: 18px;
+        font-size: 14px;
+        line-height: 18px;
         color: #25282B;
         @media screen and (max-width: 1280px){
             font-size: 12px;
-line-height: 18px;
+            line-height: 18px;
         }           
         @media screen and (max-width: 991px){
             font-size: 12px;
-line-height: 18px;
+            line-height: 18px;
         }
         @media screen and (max-width: 575px){
             font-size: 12px;
@@ -148,8 +195,33 @@ line-height: 18px;
     .irs-handle {
         cursor: pointer;
     }
+    
+    .irs-max,
+    .irs-min {
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: 500;
+        /* identical to box height, or 129% */
+        /* bg */
+        background-color: transparent;
+        color: #1A191D;
+    }
+    .irs-max {
+        color: #959595;
+    }
     .fdc {
         display: flex;
         flex-direction: column;
+    }
+    .input-message {
+        @extend .input-message;
+    }
+    [data-btn-submit-text] {
+        display: none;
+    }
+
+    [data-currency]:after {
+        // content: attr(data-currency);
+        // margin-left: 0.5ch;
     }
 }
