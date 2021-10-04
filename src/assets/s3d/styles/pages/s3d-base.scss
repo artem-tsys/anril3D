@@ -1,0 +1,21 @@
+
+.h5 {
+	font-weight: 600;
+    font-size: 28px;
+    line-height: 34px;
+    /* identical to box height, or 121% */
+    /* Black / 100 */
+    color: #25282B;
+    @media screen and (max-width:1680px){
+        font-size: 24px;
+        line-height: 30px;
+    }   
+    @media screen and (max-width:992px){
+        font-size: 22px;
+        line-height: 28px;
+    }
+    @media screen and (max-width:600px){
+        font-size: 20px;
+        line-height: 26px;
+    }   
+}

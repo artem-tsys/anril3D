@@ -35,7 +35,8 @@ export default class InstalmentCalcModel extends EventEmitter {
       const [name, dataObject] = ranges;
       switch (name) {
           case 'amount':
-            returnData[name] = (price / 100 * dataObject.old_from).toFixed(0) + ' ₴';
+            returnData[name] = (price / 100 * dataObject.old_from)
+              .toFixed(0) + ' ₴';
             break;
           case 'termin':
             returnData[name] = dataObject.old_from + ' міс.';

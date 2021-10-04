@@ -1,10 +1,11 @@
-import EventEmitter from '../eventEmitter/EventEmitter';
+/* eslint-disable no-unreachable */
+import i18next from 'i18next';
+import * as yup from 'yup';
+import ionRangeSlider from 'ion-rangeslider';
+import $ from 'jquery';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-import $ from "jquery";
-import ionRangeSlider from 'ion-rangeslider';
-import * as yup from 'yup';
-import i18next from 'i18next';
+import EventEmitter from '../eventEmitter/EventEmitter';
 import FormMonster from '../form/form';
 import SexyInput from '../form/input/input';
 import { langDetect } from '../form/helpers/helpers';
@@ -19,22 +20,22 @@ export default class InstalmentCalcView extends EventEmitter {
     this.model.on('openForm', () => {
       this.open();
     });
-    this.model.on('renderInstallmentForm', (data) => {
+    this.model.on('renderInstallmentForm', data => {
       this.render(data);
       this.handleParentControls();
     });
-    this.model.on('updateSlides', (data) => {
+    this.model.on('updateSlides', data => {
       Object.entries(data).forEach(dataItem => {
         const [name, value] = dataItem;
         const $el = document.querySelector(`[data-${name}]`);
         $el.textContent = this.numberWithCommas(value);
       });
     });
-    this.model.on('initRanges', (data) => {
+    this.model.on('initRanges', data => {
       this.addRanges(data);
     });
 
-    this.model.on('updateInstallmentActiveFlat', (data) => {
+    this.model.on('updateInstallmentActiveFlat', data => {
     });
 
     this.config = {
@@ -45,66 +46,89 @@ export default class InstalmentCalcView extends EventEmitter {
   }
 
   handleParentControls() {
+    if (window.matchMedia('(max-width: 991px)').matches) return;
+    return;
     const controlsContainer = document.querySelector('.js-s3d-ctr__elem');
     const self = this;
-    controlsContainer.addEventListener(
-      'click',
-      (evt) => {
-        controlsContainer.removeEventListener(
-          'mouseenter',
-          self.showParentControls,
-        );
-        controlsContainer.removeEventListener(
-          'mouseleave',
-          self.hideParentControls,
-        );
-        self.showParentControls();
-      },
-    );
+    const el = document.createElement('div');
+    el.classList.add('s3d-controls-wrap');
+    const birdy = document.createElement('div');
+    birdy.classList.add('s3d-controls-open');
+    controlsContainer.querySelectorAll('button').forEach(ele => {
+      el.append(ele);
+    });
+
+    el.append(birdy);
+    controlsContainer.append(el);
+    // controlsContainer.addEventListener(
+    //   'click',
+    //   (evt) => {
+    //     controlsContainer.removeEventListener(
+    //       'mouseenter',
+    //       self.showParentControls,
+    //     );
+    //     controlsContainer.removeEventListener(
+    //       'mouseleave',
+    //       self.hideParentControls,
+    //     );
+    //     self.showParentControls();
+    //   },
+    // );
     ScrollTrigger.create({
       scroller: '.s3d-flat__wrap',
       trigger: this.form,
       onEnter: () => {
-        controlsContainer.addEventListener(
-          'mouseenter',
+        el.addEventListener(
+          'click',
           self.showParentControls,
         );
-        controlsContainer.addEventListener(
-          'mouseleave',
-          self.hideParentControls,
-        );
-        self.hideParentControls();
+        // controlsContainer.addEventListener(
+        //   // 'mouseleave',
+        //   // self.hideParentControls,
+        // );
+        // self.hideParentControls();
       },
       onLeaveBack: () => {
-        controlsContainer.removeEventListener(
-          'mouseenter',
+        el.removeEventListener(
+          'click',
           self.showParentControls,
         );
-        controlsContainer.removeEventListener(
-          'mouseleave',
-          self.hideParentControls,
-        );
+        // controlsContainer.removeEventListener(
+        //   'mouseleave',
+        //   self.hideParentControls,
+        // );
         self.showParentControls();
       },
     });
     document.querySelector('.js-s3d-ctr__elem').style.overflow = 'hidden';
   }
 
-  showParentControls(evt) {
+  showParentControls() {
     const container = document.querySelector('.js-s3d-ctr__elem');
+    const containerWrap = document.querySelector('.s3d-controls-wrap');
+    containerWrap.isOpened = !containerWrap.isOpened;
+    console.log(container.isOpened);
     gsap.to(
-      container.querySelectorAll('button'),
-      { xPercent: 0, duration: 0.25, stagger: 0.1 },
+      containerWrap,
+      {
+        xPercent: containerWrap.isOpened ? 0 : -100,
+      },
       0.5,
+    );
+    gsap.to(
+      container,
+      {
+        overflow: containerWrap.isOpened ? 'visible' : 'hidden',
+      },
     );
   }
 
-  hideParentControls(evt) {
+  hideParentControls() {
     const container = document.querySelector('.js-s3d-ctr__elem');
     gsap.to(
       container.querySelectorAll('button'),
       { xPercent: -100, duration: 0.15 },
-      0.5
+      0.5,
     );
   }
 

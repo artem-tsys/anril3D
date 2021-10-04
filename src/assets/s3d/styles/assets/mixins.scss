@@ -73,3 +73,11 @@ $screen-height: 720;
 @function lh($lh, $fz) {
   @return #{($lh/$fz)}em
 }
+
+
+
+@mixin customOffsetWidth($value, $offset) {
+	width: calc(#{$value}% - #{$offset});
+	margin-left: calc(#{$offset} / 2);
+	margin-right: calc(#{$offset} / 2);
+}

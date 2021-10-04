@@ -7,6 +7,7 @@ import {
 } from '../general/General';
 import asyncRequest from '../async/async';
 import InstalmentCalcController from '../instalmentCalc/instalmentCalcController';
+import WindowFlatController from '../windowFlatView/windowFlatController';
 class FlatModel extends EventEmitter {
   constructor(config) {
     super();
@@ -24,6 +25,7 @@ class FlatModel extends EventEmitter {
     this.history = config.history;
     this.callbackForm = config.callbackForm;
     this.instalmentForm = new InstalmentCalcController(this.getFlat(this.activeFlat));
+    this.windowFlatView = new WindowFlatController();
     this.createWrap();
     this.wrapper = $(`.js-s3d__wrapper__${this.type}`);
     this.imagesType = '';
@@ -140,8 +142,13 @@ class FlatModel extends EventEmitter {
   }
 
   renderInstallmentForm() {
-    console.log('model renderInstallmentForm');
-    this.instalmentForm.view.emit('renderInstallmentForm', 'dfsbhdtjntdjmtrjk');
+    this.instalmentForm.view.emit('renderInstallmentForm');
+  }
+
+  renderWindowViewForm() {
+
+    console.log(this.windowFlatView);
+    this.windowFlatView.emit('renderWindowViewForm');
   }
 
   checkPlaning() {
