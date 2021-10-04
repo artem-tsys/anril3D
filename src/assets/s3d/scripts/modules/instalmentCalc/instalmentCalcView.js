@@ -1,5 +1,6 @@
 import EventEmitter from '../eventEmitter/EventEmitter';
 import gsap from 'gsap';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import $ from "jquery";
 import ionRangeSlider from 'ion-rangeslider';
 import * as yup from 'yup';
@@ -13,11 +14,14 @@ export default class InstalmentCalcView extends EventEmitter {
     super();
     this.model = model;
     this.init();
+    gsap.registerPlugin(ScrollTrigger);
+
     this.model.on('openForm', () => {
       this.open();
     });
     this.model.on('renderInstallmentForm', (data) => {
       this.render(data);
+      this.handleParentControls();
     });
     this.model.on('updateSlides', (data) => {
       Object.entries(data).forEach(dataItem => {
@@ -38,6 +42,70 @@ export default class InstalmentCalcView extends EventEmitter {
       amount: 10,
     };
     this.ranges = {};
+  }
+
+  handleParentControls() {
+    const controlsContainer = document.querySelector('.js-s3d-ctr__elem');
+    const self = this;
+    controlsContainer.addEventListener(
+      'click',
+      (evt) => {
+        controlsContainer.removeEventListener(
+          'mouseenter',
+          self.showParentControls,
+        );
+        controlsContainer.removeEventListener(
+          'mouseleave',
+          self.hideParentControls,
+        );
+        self.showParentControls();
+      },
+    );
+    ScrollTrigger.create({
+      scroller: '.s3d-flat__wrap',
+      trigger: this.form,
+      onEnter: () => {
+        controlsContainer.addEventListener(
+          'mouseenter',
+          self.showParentControls,
+        );
+        controlsContainer.addEventListener(
+          'mouseleave',
+          self.hideParentControls,
+        );
+        self.hideParentControls();
+      },
+      onLeaveBack: () => {
+        controlsContainer.removeEventListener(
+          'mouseenter',
+          self.showParentControls,
+        );
+        controlsContainer.removeEventListener(
+          'mouseleave',
+          self.hideParentControls,
+        );
+        self.showParentControls();
+      },
+    });
+    document.querySelector('.js-s3d-ctr__elem').style.overflow = 'hidden';
+  }
+
+  showParentControls(evt) {
+    const container = document.querySelector('.js-s3d-ctr__elem');
+    gsap.to(
+      container.querySelectorAll('button'),
+      { xPercent: 0, duration: 0.25, stagger: 0.1 },
+      0.5,
+    );
+  }
+
+  hideParentControls(evt) {
+    const container = document.querySelector('.js-s3d-ctr__elem');
+    gsap.to(
+      container.querySelectorAll('button'),
+      { xPercent: -100, duration: 0.15 },
+      0.5
+    );
   }
 
   close() {

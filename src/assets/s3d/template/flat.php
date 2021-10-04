@@ -2,6 +2,7 @@
 echo json_encode('<div class="s3d-flat__wrap">
 <div class="s3d-breadcrumbs">
           <a href="" class="s3d-breadcrumbs__link">Головна</a>
+          <a href="#" onclick="document.querySelector(`[data-type=\'plannings\']`).click();" class="s3d-breadcrumbs__link js-s3d__select" data-type="plannings">Вибір планування</a>
           <p class="s3d-breadcrumbs__current">Квартира К2-143</p>
         </div>
   <div class="s3d-flat__favourites js-s3d-favorite__wrap js-s3d__favourites s3d-show">

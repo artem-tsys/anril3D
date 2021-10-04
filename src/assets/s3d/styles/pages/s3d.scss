@@ -187,6 +187,14 @@
       text-decoration: none;
       transition: color .3s ease-in-out;
     }
+    &__link:nth-child(n+2) {
+      &:before {
+        content: "|";
+        display: inline-block;
+        color: #959595;
+        margin: 0 20px;
+      }
+    }
     &__current {
       font-family: $default-font;
       font-weight: 500;
