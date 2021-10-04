@@ -255,6 +255,8 @@
       grid-template-columns: 254px 20px 1fr auto;
       grid-template-rows: var(--s3d-margin-top) auto auto auto 1fr auto auto auto 50px;
       margin-top: 20px;
+      max-height: none;
+      height: auto;
       // grid-template-areas:
       //     'info . . .'
       //     'info . title favourite'

@@ -4,38 +4,104 @@
     margin-top: 50px;
     padding: 50px;
     --padding: 40px;
-    padding: var(--padding) var(--padding) var(--padding) calc(var(--padding) + 275px);
+    padding: var(--padding) var(--padding) var(--padding) calc(var(--padding));
 }
 .form-instalment {
     color: #1A191D;
     --group-margin: 50px;
     display: flex;
     flex-wrap: wrap;
+    --buttons-margin: 35px;
+    @media screen and (max-width: 1680px){
+        --group-margin: 25px;
+    }   
+    @media screen and (max-width: 1320px){
+        --group-margin: 70px;
+    }   
+    @media screen and (max-width: 1120px){
+        --group-margin: 25px;
+    }   
+    @media screen and (max-width: 1024px){
+        --group-margin: 70px;
+        justify-content: space-between;
+    }   
+    @media screen and (max-width: 575px){
+        --group-margin: 0px;
+        --padding: 20px;
+        justify-content: space-between;
+    }   
     &__range-group {
         width: 23%;
         display: flex;
         flex-direction: column;
         margin-right: var(--group-margin);
+        @media screen and (max-width: 1320px) {
+            width: calc(33% - var(--group-margin));
+        }
+        @media screen and (max-width: 1024px) {
+            width: calc(50% - var(--group-margin));
+            width: calc(50% - var(--group-margin) / 2);
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 25px;
+        }
+        @media screen and (max-width: 575px) {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+        }
         &-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 27px;
+            @media screen and (max-width: 1024px) {
+                margin-bottom: 20px;
+            }
+            @media screen and (max-width: 575px) {
+                margin-bottom: 8px;
+            }
         }
     }
     &__section {
         width: 23%;
         margin-right: var(--group-margin);
+        @media screen and (max-width: 1320px) {
+            width: calc(33%);
+            margin-right: 0;
+        }
+        @media screen and (max-width: 1024px) {
+            width: calc(50% - var(--group-margin) / 2);
+            margin-left: 0;
+            margin-right: 0;
+        }
+        @media screen and (max-width: 575px) {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+        }
     }
     &__small-group {
         width: auto;
         margin-left: auto;
+        @media screen and (max-width: 1024px) {
+            margin-left: var(--group-margin);
+            margin-right: auto;
+        }
+
+        .tab {
+            margin-bottom: 25px;
+        }
     }
     &__top-group {
         margin-left: auto;
         display: flex;
         :nth-child(n+2) {
             margin-left: 10px;
+        }
+        @media screen and (max-width:575px) {
+            width: 100%;
+            justify-content: space-between;
         }
     }
     &__title {
@@ -53,7 +119,14 @@
         @media screen and (max-width: 575px){
             font-size: 20px;
             line-height: 26px;
+            margin-bottom: 15px;
         }   
+    }
+
+    .s3d-form__input-group {
+        @media screen and (max-width: 1024px){
+            // margin-bottom: 20px;
+        }
     }
     &__delimiter {
         height: 1px;
@@ -61,6 +134,10 @@
         background-color: #AF989C;
         margin-top: 40px;
         margin-bottom: 35px;
+        @media screen and (max-width: 575px){
+            margin-top: 15px;
+        margin-bottom: 23px;
+        } 
     }
     &__subtitle {
         font-size: 14px;
@@ -108,9 +185,28 @@
         width: max-content;
         padding-left: 60px;
         padding-right: 60px;
+        margin-top: var(--buttons-margin);
         // margin-left: auto;
         &:after {
             display: none;
+        }
+        @media screen and (max-width: 1024px) {
+            width: 100%;
+            margin: auto;
+            max-width: 260px;
+            padding-left: 30px;
+            padding-right: 30px;
+            margin-bottom: 25px;
+            margin-top: 40px;
+        }
+        @media screen and (max-width:575px){
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: 0;
+            margin-right: 0;
+            text-align: left;
+            max-width: none;
+            margin-top: 30px;
         }
     }
     
@@ -132,7 +228,46 @@
         padding-right: 40px;
         padding-left: 40px;
         order: initial;
+        margin-top: var(--buttons-margin);
         margin-left: auto;
+        display: flex;
+        align-items: center;
+        @media screen and (max-width: 1024px) {
+            width: 100%;
+            margin: auto;
+            order: 2;
+        }
+        @media screen and (min-width: 1024px) {
+            &:hover svg {
+                fill: $color1;
+            }
+        }
+        @media screen and (max-width:575px){
+            text-align: left;
+            padding-left: 0;
+            padding-right: 0;
+            justify-content: space-between;
+        }
+        span {
+            @media screen and (max-width:575px){
+                max-width: 225px;
+                margin-right: auto;
+            }
+        }
+        &-icon {
+            width: 11px;
+            height: 14px;
+            margin-left: 14px;
+        }
+        &-icon svg {
+            width: 100%;
+            height: 100%;
+            transition: .3s ease-in-out;
+            @media screen and (max-width:575px){
+                width: 17px;
+                height: 15px;
+            }
+        }
     }
 
     .h4 {
@@ -158,6 +293,7 @@
         font-size: 22px;
         line-height: 32px;
         color: #25282B;
+        white-space: nowrap;
         @media screen and (max-width: 1280px){
             font-size: 18px;
             line-height: 26px;
@@ -187,6 +323,7 @@
         @media screen and (max-width: 575px){
             font-size: 12px;
             line-height: 18px;
+            margin-bottom: 10px;
         }     
     }
     .irs {

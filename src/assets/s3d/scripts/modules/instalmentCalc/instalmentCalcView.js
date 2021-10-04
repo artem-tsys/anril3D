@@ -152,18 +152,21 @@ export default class InstalmentCalcView extends EventEmitter {
           <div class="input-placeholder">Ім'я</div>
           </div>
           <div class="s3d-form__input-group form-field-input" data-field-input data-field-phone data-status="field--inactive">
-          <input class="s3d-form__input form-field__input" id="s3d-callback-tel" inputmode="tel" name="phone" placeholder="Телефон">
-          <label  class="s3d-form__input-message">Телефон</label>
-          <div class="input-message" data-input-message></div>
-          <div class="input-placeholder">Ваш телефон</div>
+            <input class="s3d-form__input form-field__input" id="s3d-callback-tel" inputmode="tel" name="phone" placeholder="Телефон">
+            <label  class="s3d-form__input-message">Телефон</label>
+            <div class="input-message" data-input-message></div>
+            <div class="input-placeholder">Ваш телефон</div>
           </div>
           </div>
           <div class="fdc form-instalment__small-group">
             <div class="tab">Щомісячний платіж</div>
-            <div class="h4" data-per_month data-currency="₴">12,714</div>
+            <div class="h4" data-per_month data-currency="₴"></div>
           </div>
           <button class="form-instalment__pdf" type="button">
-          Завантажити PDF з графіком виплат
+            <span>Завантажити PDF з графіком виплат</span>
+            <div class="form-instalment__pdf-icon">
+                <svg role="presentation"><use xlink:href="#icon-pdf"></use></svg>
+             </div>
           </button>
           <button class="form-instalment__submit" data-btn-submit type="submit">
           Замовити розстрочку
