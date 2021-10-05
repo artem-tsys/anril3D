@@ -13,8 +13,8 @@ export default class WindowFlatView extends EventEmitter {
       response.properties.forEach(prop => {
         document.querySelector('[data-window-props-wrap]').innerHTML += `
           <div>
-            <div>${prop.icon}</div>
-            <div>${prop.text}</div>
+            ${prop.icon}
+            <span>${prop.text}</span>
           </div>
         `;
       })
@@ -24,12 +24,13 @@ export default class WindowFlatView extends EventEmitter {
   render() {
     return `
 <div class="window-view-layout">
-    <div class="window-view-layout__left">
-      <div class="window-view-layout__title h5">Вид з вікна</div>
-      <div class="window-view-layout__delimiter"></div>
-      <div class="window-view-layout__props-container" data-window-props-wrap></div>
+
+    <div class="window-view-layout__title h5">Вид з вікна</div>
+    <div class="window-view-layout__delimiter"></div>
+    <div class="window-view-layout__props-container" data-window-props-wrap></div>
+    <div class="window-view-layout__right">
+      <iframe src="" class="" data-window-frame></iframe>
     </div>
-    <iframe src="" class="window-view-layout__right" data-window-frame></iframe>
 </div>
 `;
   }
