@@ -57,13 +57,20 @@
             }
             @media screen and (max-width:600px){
                 @include customOffsetWidth(100, var(--offset));
+                font-size: 14px;
+                line-height: 26px;
             }
         }
         svg {
-            width: 60px;
             height: auto;
             margin-right: 30px;
+            width: 60px;
             min-width: 60px;
+            @media screen and (max-width:600px){
+                width: 40px;
+                min-width: 40px;
+                
+            }
         }
 
     }

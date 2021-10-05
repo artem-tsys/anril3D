@@ -95,4 +95,20 @@
   .s3d__wrap{
     height: calc(100% - 38px);
   }
+  .s3d-breadcrumbs__current,
+  .s3d-breadcrumbs__link {
+    white-space: nowrap;
+  }
+  .s3d-breadcrumbs__link:nth-child(n+2) {
+    color: transparent;
+    font-size: 0;
+  }
+  .s3d-breadcrumbs__link:nth-child(n+2):before {
+    font-size: 14px;
+  }
+  .s3d-breadcrumbs__link:nth-child(n+2):after {
+    content: '...';
+    font-size: 14px;
+    color: #959595;
+  }
 }
